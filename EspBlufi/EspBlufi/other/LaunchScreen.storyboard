@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="izt-Vy-YBh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="tintColor" red="0.15903712917694282" green="0.54847598504764183" blue="0.99607843137254903" alpha="0.72972074468085102" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ch-93-Yqf">
+                                <rect key="frame" x="90" y="112" width="195" height="197"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright © 2016年 Healthwear Technologies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhO-sm-xBs">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="mTU-K9-gKR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96297233149999995" green="1" blue="0.84463136949999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="izt-Vy-YBh" secondAttribute="bottom" id="7xz-9e-0w9"/>
+                            <constraint firstItem="izt-Vy-YBh" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ALH-1v-cCF"/>
+                            <constraint firstAttribute="trailing" secondItem="izt-Vy-YBh" secondAttribute="trailing" id="FRZ-jA-5Fq"/>
+                            <constraint firstItem="EhO-sm-xBs" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="MMd-N2-q5u"/>
+                            <constraint firstAttribute="trailing" secondItem="EhO-sm-xBs" secondAttribute="trailing" id="Qoh-Lr-oin"/>
+                            <constraint firstItem="izt-Vy-YBh" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="WKI-gG-JWX"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="EhO-sm-xBs" secondAttribute="bottom" id="xlZ-b4-sMz"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="9ch-93-Yqf"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.5" y="374.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="launch.jpg" width="632" height="1099"/>
+    </resources>
+</document>

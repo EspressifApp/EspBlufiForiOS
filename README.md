@@ -18,13 +18,23 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 该软件按本来的样子提供，没有任何明确或暗含的担保，包括但不仅限于关于试销性、适合某一特定用途和非侵权的保证。作者和版权持有人在任何情况下均不就由软件或软件使用引起的以合同形式、民事侵权或其它方式提出的任何索赔、损害或其它责任负责。
 
+//**************** V1.0.3 ************************//
+
+This APP is demo for Blufi demo of ESP-IDF
+
+1. add get wifi list around ESP32 command;
+2. add send error report to phone when blufi has error;
+3. add send/receive custom data command, The command is for user echange user-defined data;
 
 //**************** V1.0.2 ************************//
 
 此版本为 ESP-IDF 中 blufi Demo 配合使用的APP.
-
+// This APP is demo for Blufi demo of ESP-IDF
 1.设备蓝牙名称必须为 BLUFI开头才能被搜索到;
+// APP can only search for devices whose ADV name has a "BLUFI_" prefix
 2.支持蓝牙的连接,断开自动重连;
+// support ble reconnect
 3.支持配置成 softAP ,STA 或者 softAP&STA 模式;
+// support softasoftAPmode and  STA mode
 
 //************************************************//

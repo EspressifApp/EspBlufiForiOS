@@ -237,8 +237,8 @@ typedef enum {
     //[self writeStructDataWithCharacteristic:self.WriteCharacteristic WithData:[PacketCommand DisconnectBLEWithSequence:self.sequence]];
     // send custom data
     //NSString *str=[NSString stringWithFormat:@"hello_zwj"];
-    // athe length of custom dat is less than 0xff erery time
-    //[self writeStructDataWithCharacteristic:self.WriteCharacteristic WithData:[PacketCommand SendCustomData:str Sequence:self.sequence Encrypt:YES WithKeyData:self.Securtkey]];
+    // the length of custom dat is less than 0xff erery time
+    //[self writeStructDataWithCharacteristic:self.WriteCharacteristic WithData:[PacketCommand SendCustomData:[str dataUsingEncoding:NSUTF8StringEncoding] Sequence:self.sequence Encrypt:YES WithKeyData:self.Securtkey]];
     zwjLog(@"跳转到配置界面");
     ConfigureVC *vc=[[ConfigureVC alloc]init];
     vc.view.backgroundColor=[UIColor whiteColor];

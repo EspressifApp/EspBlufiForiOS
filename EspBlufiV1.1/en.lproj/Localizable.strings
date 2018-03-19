@@ -1,0 +1,556 @@
+/* 
+  Localizable.strings
+  EspBlufi
+
+  Created by zhi weijian on 16/6/15.
+  Copyright © 2016年 zhi weijian. All rights reserved.
+*/
+
+//******************登录界面****************//
+//登录
+"LoginTitle"="Login";
+//账号
+"enter_account"="Please enter the account";
+//密码
+"enter_password"="Please enter the password";
+//登录
+"login"="Sign In";
+//注册
+"register"="Sign Up";
+//忘记密码
+"ForgetPassword"="Forget";
+//注册title
+"registertitle"="Register";
+//注册手机号
+"enter_phone"="please enter the phone number";
+//输入接收到的验证码
+"enter_code"="Please enter the verification code acquired";
+//获取验证码
+"getcode"="Get code";
+//重新获取(验证码)
+"Regetcode"="Retry";
+//下一步
+"next"="Next";
+//警告
+"warning"="Warning";
+//请输入正确的手机号
+"entercorrectphone"="Please enter the correct phone number";
+//确定
+"ok"="OK";
+
+//*************抽屉界面*********************//
+//添加新用户
+"adduser"="Add User";
+//退出登录
+"signout"="Sign out";
+
+//***************无成员界面*******************//
+//您还没添加成员哦
+"Noneusertips"="Your account has no user";
+
+//****** 添加用户界面 *************************//
+//添加新用户title
+"addnewusertitle"="Add user";
+//修改用户信息title
+"modifyuserinformatontitle"="Modify information";
+//添加
+"add"="Add";
+//修改
+"modify"="Modify";
+//男
+"man"="Male";
+//女
+"woman"="Female";
+//选择相片
+"choosephotos"="Choose photos";
+//取消
+"cancel"="cancel";
+//相机
+"camera"="Camera";
+//本地相册
+"localalbum"="Local album";
+//信息不完成
+"completeinformation"="Please complete information";
+//昵称
+"nickname"="Nickname:";
+//性别
+"gender"="Gender:";
+//出生日期
+"dateofbirth"="Birthday:";
+
+"Date of Birth"="Date of Birth";
+
+/************************** pickview ******************/
+
+//选择出生日期
+"selectbirthdate"="Date";
+//选择性别
+"selectgender"="Gender";
+
+
+//选择模式
+"selectmeasuermode"="Measure Mode";
+//标准模式
+"standardmode"="Standard";
+//智能模式
+"smartmode"="Smart";
+//选择温度
+"temperature"="Blood glucose";
+
+/***************** settingview ************************/
+//温度单位
+"Temperatureunits"="BG Unit:";
+//高温提示
+"HightemperatureThreshold"="BG High:";
+//低温提示
+"lowtemperatureThreshold"="BG Low:";
+//保存
+"save"="Save";
+
+//设置title
+"settingtitle"="Setting";
+//最高温度设置低于最低温度设置,设置无效
+"hightempsettinginvalid"="High Threshold must be greater than Low Threshold";
+//最低温度设置低于最高温度设置,设置无效
+"lowtempsettinginvalid"="Low Threshold must be less than High Threshold";
+//弹出设置确认框
+
+//显示模式
+"BGUnit"="BG Unit";
+
+
+/*************** bleview **********************/
+//打开
+"open"="Open";
+//设备异常
+"deviceerror"="Device Error";
+//低
+"blow"="blow";
+//高
+"above"="above";
+
+//温度过低报警
+"lowtemp"="Blood glucose value is";
+//温度过高报警
+"hightemp"="Blood glucose value is";
+//温度过低
+"temptoolow"="Blood glucose value is too low";
+//温度过高
+"temptoohigh"="Blood glucose value is too high";
+
+//蓝牙已打开
+"poweron"="Bluetooth turned on";
+//蓝牙已关闭
+"poweroff"="Bluetooth turned off";
+//点击搜索
+"taptostart"="Tap to start";
+//正在扫描设备
+"scaning"="Searching for device";
+//重新扫描
+"rescan"="Rescan";
+//无设备,点击重新开始
+"nodevice"="No device.Tap to restart";
+//正在连接
+"connecting"="Connecting";
+//蓝牙已连接
+"connected"="BLE has connected";
+//蓝牙已断开,点击重新搜索
+"disconnect"="BLE disconnect,tap to restar";
+//已断开
+"disconnected"="disconnected";
+//正在重连
+"reconnecting"="Reconnecting";
+//手机不支持蓝牙4.0
+"noble"="Don't support BLE 4.0";
+//提示
+"tips"="Tips";
+//发现多个设备,请选择连接
+"Discoverdevices"="Multiple devices found. Please select one to connect";
+//已连接,点击断开
+"taptodisconnect"="has connected,tap to disconnect";
+//点击取消
+"taptocancel"="tap to cancel";
+//取消连接
+"stopconnect"="Stop connecting";
+//重连超时通知
+"notifyreconnecttimeout"="Reconnecting time out";
+//连接
+"connect"="Connect";
+//断开连接
+"bledisconnect"="Disconnect the device";
+//最大报警温度
+"maxalarm"="High Threshold";
+//最小报警温度
+"minalarm"="Low Threshold";
+//是
+"yes"="YES";
+//否
+"no"="NO";
+//无设备
+"popviewnodevice"="No device";
+//关闭重连
+"stopreconnect"="Stop reconnecting";
+
+//当前用户已连接设备,是否断开连接切换到另一个用户
+"switchtoanotheruser"="Do you want to disconnect the current device and switch to another user?";
+//连接超时提示
+"connecttimeout"="Couldn‘t connect. Tap to restart";
+//重连超时提示
+"reconnecttimeout"="Reconnecting time out. Tap to restart";
+
+//当前用户正在使用,不能删除
+"cannotdelete"="Can't delete the current user in use";
+//当前用户正在使用,不能切换
+"cannotswitch"="Can't switch the current user in use";
+//电池电量低
+"batterylow"="Device battery low";
+//设备终止
+"deviceover"="Current device is finished. Please replace the device and restart";
+//知道了
+"gotit"="Got it";
+//已更换,马上开始
+"replaceandsearch"="Device replaced. Restart now";
+//屏幕亮度较暗,请调整亮度设置
+"brightresslow"="Brightness of display is too low. Please adjust brightness settings";
+//手机电池电量过低,请及时充电
+"phonebatterylow"="Phone battery is too low, please charge it while measuring";
+//手机电量低
+"myphonelow"="Phone battery low";
+//忽略
+"ignore"="Ignore";
+//不再提醒
+"Don'tshowagain"="Don't show this again";
+//温度警告
+"temperaturewarning"="Temperature Warning";
+//最高温度
+"Highest"="Highest:";
+//超过
+"over"="Over";
+//等待连接
+"waittoconnect"="Waiting to connect";
+
+//当前温度过低,请检查温度贴佩戴方式
+"alarmtoolow"="Blood glucose value is too low, please check EspBlufi";
+//当前温度过高,请检查温度贴佩戴方式
+"alarmtoohigh"="Blood glucose value is too high, please check EspBlufi";
+
+"Reconnectthedevice?"="Reconnect the device ?";
+//铃声音量过低
+"Ringervolumeistoolow"="Ringer volume is too low";
+
+//***********关于我们View***********//
+//关于我们
+"aboutus"="About us";
+
+//************popView*********//
+//隐藏
+"hide"="Hide";
+
+//*******Eventkit*******//
+//事件提醒
+"Event"="Event Reminder";
+//隐私警告
+"privacywarning"="Privacy Warning";
+//没有日历权限
+"permissionnot"="Permission was not granted for Calendar";
+
+//*******Alarm *****//
+//报警记录
+"Alarmrecord"="Alarm History";
+//确认删除所有报警记录?
+"Deleteallalarmrecords"="Delete all alarm records?";
+
+//*********Time line*********//
+
+//增加记录
+"AddRecord"="Add Record";
+//修改记录
+"modifyRecord"="Modify Record";
+//地点
+"location"="Location";
+//8字以内
+"eightwords"="(8 words or less)";
+//时间
+"time"="Time";
+//主题
+"theme"="Theme";
+//详细内容
+"details"="Details";
+//删除
+"delete"="Delete";
+//时
+"hrs"="Hrs";
+//分
+"min"="Min";
+//秒
+"sec"="Sec";
+//**************TempReport******************//
+//名字
+"Name"="Name";
+//性别
+"Gender"="Gender";
+//日期
+"Date"="Date";
+//年龄
+"Age"="Age";
+//体温报告
+"Tempreport"="Temperature Report";
+//保存成功
+"SaveSuccess"="Saved successfully";
+//保存失败
+"Savefail"="Failed to save";
+//分享
+"share"="Share";
+//手机相册
+"PhoneAlbum"="Phone Album";
+
+//***********Medication record view *****************//
+//筛选
+"filter"="Filter:";
+//全部
+"all"="All";
+//服药记录
+"Medicine"="Insulin";
+//其他
+"Other"="Other";
+
+//***************add record view *******************//
+//事件类型
+"eventtype"="Event:";
+//日期
+"Date:"="Date:";
+//描述
+"description"="Details:";
+//服药记录
+"MedicineRecord"="Medicine Record";
+//其他事件
+"otherevent"="Other Event";
+
+
+//***************QQ view ****************//
+
+//报警记录
+"alarmrecord"="Alarm";
+//历史记录
+"historyrecord"="Event";
+//事件提醒
+"EventReminder"="Reminder";
+//体温报告
+"Temperaturereport"="Report";
+//导出文件
+"ExportFile"="Export Data";
+//清除数据
+"Cleardata"="Clear Data";
+
+//年龄
+"yeasold"=" years old";
+//月
+"month"="Month";
+//无数据
+"Nodata"="No data";
+
+//关机
+"Poweroff"="Power off";
+
+//关闭温度贴
+"PoweroffEspBlufi"="Turn off the EspBlufi ?";
+//设备未连接,不能执行该操作
+//"can'tperformtheoperation"="Can't perform the operation while device is not connected";
+"can'tperformtheoperation"="Detector is not connected";
+
+//****************feedback***************//
+//反馈
+"feedback"="User Feedback";
+//测温准确性
+"Accuracy"="Accuracy:";
+//佩戴舒适性
+"Comfortability"="Comfortability:";
+//app体验
+"AppUsability"="App Usability:";
+//蓝牙稳定性
+"BLEConnectivity"="BLE Stabily:";
+//联系方式
+"Email"="Email:";
+"emailplacehold"="Please leave your email address";
+"nameplacehold"="Please leave your name";
+"questionplacehold"="Please enter a comment or suggestion";
+//评分项为空
+"firstfouritemsTips"="The Star items can't be empty";
+//发送成功
+"Sendsuccessful"="Send successful";
+//发送失败,请稍后重试
+"failsubmit"="Failed,Try again later!";
+//正在发送,请稍后
+"Sendingpleasewait"="Submiting...";
+//评分项不能为空
+//发送
+"Submit"="Submit";
+
+//***************share*******************//
+//分享成功
+"sharesuccessfully"="Shared successfully";
+//分享失败
+"sharefail"="Sharing is rejected";
+//取消分享
+"sharecancel"="Sharing is cancelled";
+
+//请等待
+"wait"="wait...";
+//清除数据成功
+"Cleareddatabasesuccessfully"="Clear the database successfully";
+//数据库为空
+"Thedatabaseisempty"="The database is empty";
+//导出数据成功
+"Exportsucceeded"="Export File succeeded";
+//断开蓝牙
+"disconnectble"="Disconnect BLE";
+
+//用户记录
+"userrecod"="User";
+//操作记录
+"controlrecod"="Control";
+//报警记录
+"alarmrecod"="Alarm";
+//运动
+"exercise"="Exercise";
+//吃饭
+"meal"="Meal";
+//校准
+"Calibration"="Calibration";
+//校准时间
+"CalibrationTime"="Calibration Time";
+//添加事件
+"AddEvent"="Add Event";
+//等待数据
+"waitdata"="wait data";
+//警告开关
+"AlarmON/OFF"="Alarm ON/OFF:";
+//警告设置
+"AlarmSwith"="Alarm Swith";
+//开
+"ON"="ON";
+//关
+"OFF"="OFF";
+//血糖过低
+"BGTooLow"="BG Too Low:";
+//血糖快速下降
+"RapidlyFalling"="Rapidly Falling:";
+//血糖下降
+"BGFalling"="BG Falling:";
+//血糖快速下降
+"RapidlyRising"="Rapidly Rising:";
+//血糖上升
+"BGRising"="BG Rising:";
+//电量过低低
+"BatteryLow"="Battery Low:";
+//描述
+"Desc"="Desc";
+//时间
+"Time"="Time:";
+//血糖
+"BG"="BG:";
+//血糖值
+"BGValue"="BG Value";
+//血糖上升警告
+"BGRisingAlarm"="BG Rising Alarm";
+//血糖快速上升警告
+"BGRapidlyRisingAlarm"="BG Rapidly Rising Alarm";
+//血糖下降警告
+"BGFallingAlarm"="BG Falling Alarm";
+//血糖快速下降警告
+"BGRapidlyFallingAlarm"="BG Rapidly Falling Alarm";
+//血糖过低警告
+"BGValuetoolow"="BGValue too low";
+//电量过低警告
+"batterylow"="battery low";
+//手机电量过低警告
+"phonebatterylow"="phone battery low";
+//血糖高警告
+"HighBGValue"="High BGValue";
+//血糖低警告
+"LowBGValue"="Low BGValue";
+//没有detector
+"NODetector"="NO Detector";
+//最高
+"Highest"="Highest:";
+//最低
+"Lowest"="Lowest:";
+//平均
+"Average"="Average:";
+//调试
+"Debug"="Debug";
+//无线升级
+"OTA"="OTA";
+//校准事件
+"CalibrationEvent"="Calibration Event";
+//血糖快速下降警告
+"BGrapidlyFallingAlarm"="BG rapidly Falling Alarm";
+//血糖快速上升警告
+"BGrapidlyRisingAlarm"="BG rapidly Rising Alarm";
+//血糖下降警告
+"BGFallingAlarm"="BG Falling Alarm";
+//血糖上升警告
+"BGRisingAlarm"="BG Rising Alarm";
+//血糖过低警告
+"BGTooLowAlarm"="BG Too Low Alarm";
+//开始测量事件
+"StartMeasureEvent"="Start Measure Event";
+//停止测量事件
+"StopMeasureEvent"="Stop Measure Event";
+//电池电量低警告
+"DevicelowbatteryAlarm"="Device low battery Alarm";
+//校准错误事件
+"CalibrationErrorEvent"="Calibration Error Event";
+//校准成功事件
+"CalibrationSuccessEvent"="Calibration success Event";
+//blank 错误事件
+"BlankErrorEvent"="Blank Error Event";
+//血糖低警告
+"BGvaluelowAlarm"="BG value low Alarm";
+//血糖高警告
+"BGvaluehighAlarm"="BG value high Alarm";
+//校准错误
+"CalibrationWrong"="Calibration Wrong";
+//blank 值错误
+"BlankValueWrong"="Blank Value Wrong";
+//没有sensor启动
+"NoSensorStarted"="No Sensor Started";
+//blank值为0
+"balnkvalueis0"="balnk value is 0";
+//校准时间到
+"Nowisthecalibrationtime"="Now is the calibration time";
+
+//弱
+"weak"="weak";
+//剧烈
+"intense"="intense";
+//中等
+"moderate"="moderate";
+
+//小
+"small"="small";
+//中
+"medium"="medium";
+//大
+"large"="large";
+//确认开始使用sensor
+"Areyousuretostartsensor"="Are you sure to start sensor ?";
+//确认开始测量
+"AreyousuretoStartMeasurement"="Are you sure to Start Measurement ?";
+//传感器寿命结束,请更换
+"SensorExpireTimetitle"="Sensor is running out of life. Please replace it!";
+
+//软件版本号
+"SWVersion"="SWVersion:";
+//硬件版本号
+"HWVersion"="HWVersion:";
+//序列号
+"Serial"="Serial:";
+//类型
+"Modal"="Modal:";
+//生产日期
+"ProduceDate"="ProduceDate:";
+//系统时间
+"SysTime"="SysTime:";
+
+

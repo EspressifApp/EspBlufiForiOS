@@ -22,6 +22,12 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 This APP is demo for Blufi demo of ESP-IDF
 
+open the source code !!!!!!!!
+
+//**************** V1.0.3 ************************//
+
+This APP is demo for Blufi demo of ESP-IDF
+
 1. add get wifi list around ESP32 command;
 2. add send error report to phone when blufi has error;
 3. add send/receive custom data command, The command is for user echange user-defined data;

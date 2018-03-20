@@ -2,8 +2,8 @@
 //  STLoopProgressView+BaseConfiguration.m
 //  STLoopProgressView
 //
-//  Created by TangJR on 7/1/15.
-//  Copyright (c) 2015 tangjr. All rights reserved.
+//  Copyright 2017-2018 Espressif Systems (Shanghai) PTE LTD.
+//  This code is licensed under Espressif MIT License, found in LICENSE file.
 //
 
 #import "STLoopProgressView+BaseConfiguration.h"

@@ -2,8 +2,8 @@
 //  MASLayoutConstraint.h
 //  Masonry
 //
-//  Created by Jzhi weijian on 3/08/13.
-//  Copyright (c) 2013 Jonas Budelmann. All rights reserved.
+//  Copyright 2017-2018 Espressif Systems (Shanghai) PTE LTD.
+//  This code is licensed under Espressif MIT License, found in LICENSE file.
 //
 
 #import "MASUtilities.h"

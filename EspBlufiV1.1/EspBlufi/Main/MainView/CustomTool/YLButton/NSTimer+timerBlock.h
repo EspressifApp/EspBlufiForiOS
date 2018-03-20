@@ -2,8 +2,8 @@
 //  NSTimer+timerBlock.h
 //  ZZCircleViewDemo
 //
-//  Created by iMac on 2016/12/22.
-//  Copyright © 2016年 zhouxing. All rights reserved.
+//  Copyright 2017-2018 Espressif Systems (Shanghai) PTE LTD.
+//  This code is licensed under Espressif MIT License, found in LICENSE file.
 //
 
 #import <Foundation/Foundation.h>

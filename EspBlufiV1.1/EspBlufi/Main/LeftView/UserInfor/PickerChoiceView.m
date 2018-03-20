@@ -2,8 +2,8 @@
 //  PickerChoiceView.m
 //  TFPickerView
 //
-//  Created by TF_man on 16/5/11.
-//  Copyright © 2016年 tituanwang. All rights reserved.
+//  Copyright 2017-2018 Espressif Systems (Shanghai) PTE LTD.
+//  This code is licensed under Espressif MIT License, found in LICENSE file.
 //
 //屏幕宽和高
 #define kScreenWidth ([UIScreen mainScreen].bounds.size.width)

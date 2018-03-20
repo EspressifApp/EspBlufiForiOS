@@ -2,7 +2,8 @@
 //  UIViewController+MASAdditions.h
 //  Masonry
 //
-//  Created by Craig Siemens on 2015-06-23.
+//  Copyright 2017-2018 Espressif Systems (Shanghai) PTE LTD.
+//  This code is licensed under Espressif MIT License, found in LICENSE file.
 //
 //
 

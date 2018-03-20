@@ -2,9 +2,8 @@
 //  ZZCircleProgress.m
 //  ZZCircleProgressDemo
 //
-//  Created by zhi weijian on 2016/12/23.
-//  Copyright © 2016年 zhi weijian. All rights reserved.
-//
+//  Copyright 2017-2018 Espressif Systems (Shanghai) PTE LTD.
+//  This code is licensed under Espressif MIT License, found in LICENSE file.
 
 #import "ZZCircleProgress.h"
 #import "NSTimer+timerBlock.h"

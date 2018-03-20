@@ -2,8 +2,8 @@
 //  UIColor+Hex.h
 //  lian
 //
-//  Created by zhi weijian on 15-9-7.
-//  Copyright © 2016年 zhi weijian. All rights reserved..
+//  Copyright 2017-2018 Espressif Systems (Shanghai) PTE LTD.
+//  This code is licensed under Espressif MIT License, found in LICENSE file.
 //
 
 #import <UIKit/UIKit.h>

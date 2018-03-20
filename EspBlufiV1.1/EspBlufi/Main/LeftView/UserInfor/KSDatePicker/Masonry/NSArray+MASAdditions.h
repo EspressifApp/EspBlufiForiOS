@@ -2,7 +2,8 @@
 //  NSArray+MASAdditions.h
 //
 //
-//  Created by Daniel Hammond on 11/26/13.
+//  Copyright 2017-2018 Espressif Systems (Shanghai) PTE LTD.
+//  This code is licensed under Espressif MIT License, found in LICENSE file.
 //
 //
 

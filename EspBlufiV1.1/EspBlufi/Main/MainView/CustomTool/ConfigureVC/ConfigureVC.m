@@ -408,9 +408,6 @@ typedef enum
         if ([self.SoftAPSecurityBtn.titleLabel.text isEqualToString:@"OPEN"]) {
             object.Security=OPEN_Mode;
             
-        }else if ([self.SoftAPSecurityBtn.titleLabel.text isEqualToString:@"WEP"])
-        {
-            object.Security=WEP_Mode;
         }else if ([self.SoftAPSecurityBtn.titleLabel.text isEqualToString:@"WPA_PSK"])
         {
             object.Security=WPA_PSK_Mode;
@@ -463,9 +460,6 @@ typedef enum
         if ([self.SoftAPSecurityBtn.titleLabel.text isEqualToString:@"OPEN"]) {
             object.Security=OPEN_Mode;
             
-        }else if ([self.SoftAPSecurityBtn.titleLabel.text isEqualToString:@"WEP"])
-        {
-            object.Security=WEP_Mode;
         }else if ([self.SoftAPSecurityBtn.titleLabel.text isEqualToString:@"WPA_PSK"])
         {
             object.Security=WPA_PSK_Mode;

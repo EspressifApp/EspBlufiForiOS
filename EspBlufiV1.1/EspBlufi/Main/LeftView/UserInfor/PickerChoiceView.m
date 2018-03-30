@@ -234,7 +234,7 @@
 }
 -(void)CreatSecurity
 {
-    NSArray *SecurityArray=@[@"OPEN",@"WEP",@"WPA_PSK",@"WPA2_PSK",@"WPA_WPA2_PSK"];
+    NSArray *SecurityArray=@[@"OPEN",@"WPA_PSK",@"WPA2_PSK",@"WPA_WPA2_PSK"];
     [self.array addObject:SecurityArray];
     [self.pickerV selectRow:1 inComponent:0 animated:YES];
 

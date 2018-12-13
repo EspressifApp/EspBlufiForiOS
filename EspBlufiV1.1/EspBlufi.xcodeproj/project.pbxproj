@@ -1040,21 +1040,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QWY5DY832N;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK/Support/Optional",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK/Support/PlatformConnector",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK/Support/PlatformSDK/QQSDK",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK/Support/Required",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/EspBlufi/openssl/openssl/include/";
 				INFOPLIST_FILE = EspBlufi/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/EspBlufi/Main/MainView/BLE/Controller",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/EspBlufi/openssl",
@@ -1075,21 +1067,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QWY5DY832N;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK/Support/Optional",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK/Support/PlatformConnector",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK/Support/PlatformSDK/QQSDK",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK/Support/Required",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/EspBlufi/openssl/openssl/include/";
 				INFOPLIST_FILE = EspBlufi/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/EspBlufi/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/EspBlufi/Main/MainView/BLE/Controller",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/EspBlufi/openssl",

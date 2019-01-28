@@ -540,39 +540,79 @@
 }
 
 //send custom data
-+(NSMutableData *)SendCustomData:(NSData *)custom_data  Sequence:(uint8_t)sequence Encrypt:(BOOL)Isencrypt WithKeyData:(NSData *)keydata
++ (NSMutableData *)SendCustomData:(NSData *)custom_data Sequence:(uint8_t)sequence Frag:(BOOL)flag Encrypt:(BOOL)Isencrypt WithKeyData:(NSData *)keydata
 {
-    
-    uint8_t dataByte[4];
-    dataByte[0]=(0x13<<2) | 0x01;            //数据包，发送custom data
-    if(Isencrypt)
-    {
-        dataByte[1]=0x01 | 0x02;             //加密,有校验,手机发,没有后续包,无ACK
-    }else
-    {
-        dataByte[1]=0x00 | 0x02;             //不加密,有校验,手机发,没有后续包,无ACK
+    NSMutableData *data=[[NSMutableData alloc] initWithCapacity:0];
+    if (flag) {
+        uint8_t dataByte[4];
+        dataByte[0]=(0x13<<2) | 0x01;            //数据包，发送custom data
+        if(Isencrypt)
+        {
+            dataByte[1]=0x01 | 0x02;             //加密,有校验,手机发,没有后续包,无ACK
+        }else
+        {
+            dataByte[1]=0x00 | 0x02;             //不加密,有校验,手机发,没有后续包,无ACK
+        }
+        dataByte[2]=sequence;                    //序列
+        dataByte[3]=custom_data.length+2;             //data length
+        data=[NSMutableData dataWithBytes:&dataByte length:sizeof(dataByte)];
+        //NSData *customdata=[custom_data_str dataUsingEncoding:NSUTF8StringEncoding];
+        
+        Byte totalLengthByte[] = {(custom_data.length&0x00ff),(custom_data.length>>8)};
+        NSMutableData* contentData=[NSMutableData dataWithCapacity:0];
+        [contentData appendData:[[NSData alloc] initWithBytes:totalLengthByte length:2]];
+        [contentData appendData:custom_data];
+        
+        //计算校验码
+        NSMutableData *Tempdata=[NSMutableData dataWithData:data];
+        [Tempdata appendData:contentData];
+        NSData *checksumdata=[self GetCRCWithData:Tempdata];
+        //加密
+        if (Isencrypt) {
+            Byte *byte=(Byte *)[contentData bytes];
+            NSData* tmpCryptData=[DH_AES blufi_aes_Encrypt:sequence data:byte len:(int)contentData.length KeyData:keydata];
+            contentData=[NSMutableData dataWithData:tmpCryptData];
+        }
+        //拼接
+        [data appendData:contentData];
+        
+        //加校验码
+        [data appendData:checksumdata];
+        
+        return data;
+    }else {
+        uint8_t dataByte[4];
+        dataByte[0]=(0x13<<2) | 0x01;            //数据包，发送custom data
+        if(Isencrypt)
+        {
+            dataByte[1]=0x01 | 0x02;             //加密,有校验,手机发,没有后续包,无ACK
+        }else
+        {
+            dataByte[1]=0x00 | 0x02;             //不加密,有校验,手机发,没有后续包,无ACK
+        }
+        dataByte[2]=sequence;                    //序列
+        dataByte[3]=custom_data.length;             //data length
+        data=[NSMutableData dataWithBytes:&dataByte length:sizeof(dataByte)];
+        //NSData *customdata=[custom_data_str dataUsingEncoding:NSUTF8StringEncoding];
+        
+        //计算校验码
+        NSMutableData *Tempdata=[NSMutableData dataWithData:data];
+        [Tempdata appendData:custom_data];
+        NSData *checksumdata=[self GetCRCWithData:Tempdata];
+        //加密
+        if (Isencrypt) {
+            Byte *byte=(Byte *)[custom_data bytes];
+            custom_data=[DH_AES blufi_aes_Encrypt:dataByte[2] data:byte len:(int)custom_data.length KeyData:keydata];
+        }
+        //拼接
+        [data appendData:custom_data];
+        
+        //加校验码
+        [data appendData:checksumdata];
+        
+        return data;
     }
-    dataByte[2]=sequence;                    //序列
-    dataByte[3]=custom_data.length;             //data length
-    NSMutableData *data=[NSMutableData dataWithBytes:&dataByte length:sizeof(dataByte)];
-    //NSData *customdata=[custom_data_str dataUsingEncoding:NSUTF8StringEncoding];
     
-    //计算校验码
-    NSMutableData *Tempdata=[NSMutableData dataWithData:data];
-    [Tempdata appendData:custom_data];
-    NSData *checksumdata=[self GetCRCWithData:Tempdata];
-    //加密
-    if (Isencrypt) {
-        Byte *byte=(Byte *)[custom_data bytes];
-        custom_data=[DH_AES blufi_aes_Encrypt:dataByte[2] data:byte len:(int)custom_data.length KeyData:keydata];
-    }
-    //拼接
-    [data appendData:custom_data];
-    
-    //加校验码
-    [data appendData:checksumdata];
-    
-    return data;
 }
 
 @end

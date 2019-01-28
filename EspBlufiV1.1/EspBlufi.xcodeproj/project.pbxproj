@@ -58,6 +58,7 @@
 		21AC76221E2368E800C6E550 /* EspBlufiUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AC76211E2368E800C6E550 /* EspBlufiUITests.m */; };
 		21B81C701E961EA00000A7FA /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B81C6E1E961EA00000A7FA /* libcrypto.a */; };
 		21B81C711E961EA00000A7FA /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B81C6F1E961EA00000A7FA /* libssl.a */; };
+		2678126221FB0B7600A3B94C /* sendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2678126121FB0B7600A3B94C /* sendViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,6 +263,8 @@
 		21F440A21CCB50E6006113AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21F440A71CCB50E6006113AE /* EspBlufi.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EspBlufi.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21F440AD1CCB50E6006113AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2678126021FB0B7600A3B94C /* sendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendViewController.h; sourceTree = "<group>"; };
+		2678126121FB0B7600A3B94C /* sendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -515,6 +518,7 @@
 		2149B5421D54749400084CB1 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				2678125F21FB0B7600A3B94C /* sendView */,
 				2149B5431D54749400084CB1 /* BLE */,
 				2149B5611D54749400084CB1 /* CustomTool */,
 			);
@@ -700,6 +704,15 @@
 			name = blufiprotocol;
 			sourceTree = "<group>";
 		};
+		2678125F21FB0B7600A3B94C /* sendView */ = {
+			isa = PBXGroup;
+			children = (
+				2678126021FB0B7600A3B94C /* sendViewController.h */,
+				2678126121FB0B7600A3B94C /* sendViewController.m */,
+			);
+			path = sendView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -767,8 +780,8 @@
 				TargetAttributes = {
 					21F440821CCB50E6006113AE = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = QWY5DY832N;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = QWXF6GB4AV;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -845,6 +858,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2678126221FB0B7600A3B94C /* sendViewController.m in Sources */,
 				2149B5A31D54749400084CB1 /* View+MASAdditions.m in Sources */,
 				2149B4F31D546DD800084CB1 /* BabyPeripheralManager.m in Sources */,
 				2149B5A11D54749400084CB1 /* NSArray+MASAdditions.m in Sources */,
@@ -1036,9 +1050,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QWY5DY832N;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pei Chi Ng (56K59C55CS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pei Chi Ng (56K59C55CS)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = QWXF6GB4AV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/EspBlufi/openssl/openssl/include/";
@@ -1052,10 +1067,11 @@
 					"$(PROJECT_DIR)/EspBlufi/openssl",
 					"$(PROJECT_DIR)/EspBlufi/openssl/openssl",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.bluefi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.EspBlufi;
 				PRODUCT_NAME = EspBlufi;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE_SPECIFIER = EspBlufiDevelopment;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1063,9 +1079,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QWY5DY832N;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Espressif Systems (Shanghai) Pte. Ltd. (QWXF6GB4AV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Espressif Systems (Shanghai) Pte. Ltd. (QWXF6GB4AV)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = QWXF6GB4AV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/EspBlufi/openssl/openssl/include/";
@@ -1079,10 +1096,11 @@
 					"$(PROJECT_DIR)/EspBlufi/openssl",
 					"$(PROJECT_DIR)/EspBlufi/openssl/openssl",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.bluefi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.EspBlufi;
 				PRODUCT_NAME = EspBlufi;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE_SPECIFIER = EspBlufiDistribution;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

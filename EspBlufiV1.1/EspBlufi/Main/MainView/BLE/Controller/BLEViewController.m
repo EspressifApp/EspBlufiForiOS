@@ -232,7 +232,30 @@ typedef enum {
     self.navigationController.navigationBarHidden=NO;
     [self.navigationController pushViewController:vc animated:YES];
     vc.delegate=self;
+    //注册发送自定义数据通知
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(sendDtaCallBack:) name:@"sendDtaNotification" object:nil];
+}
+//发送自定义数据通知
+- (void)sendDtaCallBack:(NSNotification *)message {
+    NSDictionary *objectDic = [message object];
+    NSString *str=[objectDic objectForKey:@"customData"];
+    NSData *dataMessage = [str dataUsingEncoding:NSUTF8StringEncoding];
     
+    NSInteger datacount = 80;
+    //发送数据,需要分包
+    NSInteger number = dataMessage.length / datacount + ((dataMessage.length % datacount)>0? 1:0);
+    
+    for(NSInteger i = 0; i < number; i++){
+        if (i == number-1){
+            NSData *data = [PacketCommand SendCustomData:dataMessage Sequence:self.sequence Frag:NO Encrypt:YES WithKeyData:self.Securtkey];
+            [self writeStructDataWithCharacteristic:self.WriteCharacteristic WithData:data];
+        } else {
+            NSData *data = [PacketCommand SendCustomData:[dataMessage subdataWithRange:NSMakeRange(0, datacount)] Sequence:self.sequence Frag:YES Encrypt:YES WithKeyData:self.Securtkey];
+            [self writeStructDataWithCharacteristic:self.WriteCharacteristic WithData:data];
+            
+            dataMessage = [dataMessage subdataWithRange:NSMakeRange(datacount, dataMessage.length-datacount)];
+        }
+    }
 }
 //ConfigVC 代理
 -(void)SetOpmode:(Opmode)mode Object:(OpmodeObject *)object openmode:(BOOL)open
@@ -420,14 +443,14 @@ typedef enum {
     [SlideBtn setImage:[UIImage imageNamed:@"III"] forState:UIControlStateNormal];
     [SlideBtn addTarget:self action:@selector(leftBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     //SlideBtn.backgroundColor=[UIColor redColor];
-    [self.view addSubview:SlideBtn];
+//    [self.view addSubview:SlideBtn];
     
     UIButton *MoreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     MoreBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-10-45, 25, 45, 45);
     [MoreBtn setImage:[UIImage imageNamed:@"point"] forState:UIControlStateNormal];
     [MoreBtn addTarget:self action:@selector(RightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     //[backBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:MoreBtn];
+//    [self.view addSubview:MoreBtn];
     
     UILabel *textlabel=[[UILabel alloc]initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-100)/2, 27, 100, 35)];
     textlabel.textAlignment=NSTextAlignmentCenter;

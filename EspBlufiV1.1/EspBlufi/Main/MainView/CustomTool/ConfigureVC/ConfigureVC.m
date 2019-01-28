@@ -14,6 +14,8 @@
 #import "OpmodeObject.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
 
+#import "sendViewController.h"
+
 #define ScreenW  [UIScreen mainScreen].bounds.size.width
 #define ScreenH  [UIScreen mainScreen].bounds.size.height
 #define offset 35
@@ -70,6 +72,10 @@ typedef enum
     // Do any additional setup after loading the view.
     UIImage *backimage=[UIImage imageNamed:@"back_normal"];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[backimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:(UIBarButtonItemStylePlain) target:self action:@selector(didClickLeftBarBtnIem:)];
+    
+    self.navigationItem.title = @"配置";
+    UIImage *sendImage=[UIImage imageNamed:@"send"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[sendImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:(UIBarButtonItemStylePlain) target:self action:@selector(didClickRightBarBtnIem:)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillshow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillhidden:) name:UIKeyboardWillHideNotification object:nil];
@@ -676,6 +682,12 @@ typedef enum
     //Log(@"didClickLeftBarBtnIem");
     [self.navigationController popViewControllerAnimated:YES];
     
+}
+
+- (void)didClickRightBarBtnIem:(UIBarButtonItem *)sender
+{
+    sendViewController *svc = [[sendViewController alloc]init];
+    [self.navigationController pushViewController:svc animated:YES];
 }
 //textField 代理
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

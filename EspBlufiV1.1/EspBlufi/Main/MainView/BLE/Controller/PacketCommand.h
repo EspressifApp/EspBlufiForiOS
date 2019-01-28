@@ -295,11 +295,12 @@ typedef enum {
  *
  * @brief         This function is called to send custom data
  * @param sequence  :  current sequence
+ * @param flag      :  Whether the encryption
  * @param Isencrypt :  use encrypt or not
  * @param keydata   :  Secret key
  * @return          data
  *
  */
-+(NSMutableData *)SendCustomData:(NSData *)custom_data  Sequence:(uint8_t)sequence Encrypt:(BOOL)Isencrypt WithKeyData:(NSData *)keydata;
++(NSMutableData *)SendCustomData:(NSData *)custom_data  Sequence:(uint8_t)sequence Frag:(BOOL)flag Encrypt:(BOOL)Isencrypt WithKeyData:(NSData *)keydata;
 
 @end

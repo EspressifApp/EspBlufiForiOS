@@ -540,7 +540,7 @@
 }
 
 //send custom data
-+ (NSMutableData *)SendCustomData:(NSData *)custom_data Sequence:(uint8_t)sequence Frag:(BOOL)flag Encrypt:(BOOL)Isencrypt WithKeyData:(NSData *)keydata
++ (NSMutableData *)SendCustomData:(NSData *)custom_data Sequence:(uint8_t)sequence Frag:(BOOL)flag Encrypt:(BOOL)Isencrypt TotalLength:(uint16_t)totallength WithKeyData:(NSData *)keydata
 {
     NSMutableData *data=[[NSMutableData alloc] initWithCapacity:0];
     if (flag) {
@@ -548,17 +548,17 @@
         dataByte[0]=(0x13<<2) | 0x01;            //数据包，发送custom data
         if(Isencrypt)
         {
-            dataByte[1]=0x01 | 0x02;             //加密,有校验,手机发,没有后续包,无ACK
+            dataByte[1]=0x01 | 0x02 | 0x00 | 0x00 | 0x10;             //加密,有校验,手机发,有后续包,无ACK
         }else
         {
-            dataByte[1]=0x00 | 0x02;             //不加密,有校验,手机发,没有后续包,无ACK
+            dataByte[1]=0x00 | 0x02 | 0x00 | 0x00 | 0x10;             //不加密,有校验,手机发,有后续包,无ACK
         }
         dataByte[2]=sequence;                    //序列
         dataByte[3]=custom_data.length+2;             //data length
         data=[NSMutableData dataWithBytes:&dataByte length:sizeof(dataByte)];
         //NSData *customdata=[custom_data_str dataUsingEncoding:NSUTF8StringEncoding];
         
-        Byte totalLengthByte[] = {(custom_data.length&0x00ff),(custom_data.length>>8)};
+        Byte totalLengthByte[] = {(totallength&0x00ff),(totallength>>8)};
         NSMutableData* contentData=[NSMutableData dataWithCapacity:0];
         [contentData appendData:[[NSData alloc] initWithBytes:totalLengthByte length:2]];
         [contentData appendData:custom_data];
@@ -585,10 +585,10 @@
         dataByte[0]=(0x13<<2) | 0x01;            //数据包，发送custom data
         if(Isencrypt)
         {
-            dataByte[1]=0x01 | 0x02;             //加密,有校验,手机发,没有后续包,无ACK
+            dataByte[1]=0x01 | 0x02 | 0x00 | 0x00 | 0x00;             //加密,有校验,手机发,没有后续包,无ACK
         }else
         {
-            dataByte[1]=0x00 | 0x02;             //不加密,有校验,手机发,没有后续包,无ACK
+            dataByte[1]=0x00 | 0x02 | 0x00 | 0x00 | 0x00;             //不加密,有校验,手机发,没有后续包,无ACK
         }
         dataByte[2]=sequence;                    //序列
         dataByte[3]=custom_data.length;             //data length

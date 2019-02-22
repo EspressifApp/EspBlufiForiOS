@@ -247,10 +247,10 @@ typedef enum {
     
     for(NSInteger i = 0; i < number; i++){
         if (i == number-1){
-            NSData *data = [PacketCommand SendCustomData:dataMessage Sequence:self.sequence Frag:NO Encrypt:YES WithKeyData:self.Securtkey];
+            NSData *data = [PacketCommand SendCustomData:dataMessage Sequence:self.sequence Frag:NO Encrypt:YES TotalLength:dataMessage.length WithKeyData:self.Securtkey];
             [self writeStructDataWithCharacteristic:self.WriteCharacteristic WithData:data];
         } else {
-            NSData *data = [PacketCommand SendCustomData:[dataMessage subdataWithRange:NSMakeRange(0, datacount)] Sequence:self.sequence Frag:YES Encrypt:YES WithKeyData:self.Securtkey];
+            NSData *data = [PacketCommand SendCustomData:[dataMessage subdataWithRange:NSMakeRange(0, datacount)] Sequence:self.sequence Frag:YES Encrypt:YES TotalLength:dataMessage.length WithKeyData:self.Securtkey];
             [self writeStructDataWithCharacteristic:self.WriteCharacteristic WithData:data];
             
             dataMessage = [dataMessage subdataWithRange:NSMakeRange(datacount, dataMessage.length-datacount)];

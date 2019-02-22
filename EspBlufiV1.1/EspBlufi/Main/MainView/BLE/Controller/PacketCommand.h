@@ -301,6 +301,6 @@ typedef enum {
  * @return          data
  *
  */
-+(NSMutableData *)SendCustomData:(NSData *)custom_data  Sequence:(uint8_t)sequence Frag:(BOOL)flag Encrypt:(BOOL)Isencrypt WithKeyData:(NSData *)keydata;
++(NSMutableData *)SendCustomData:(NSData *)custom_data Sequence:(uint8_t)sequence Frag:(BOOL)flag Encrypt:(BOOL)Isencrypt TotalLength:(uint16_t)totallength WithKeyData:(NSData *)keydata;
 
 @end

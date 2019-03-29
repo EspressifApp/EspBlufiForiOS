@@ -576,7 +576,6 @@ typedef enum {
                 device.Peripheral=peripheral;
                 device.name=[[NSUserDefaults standardUserDefaults] objectForKey:ConnectedDeviceNameKey];
                 weakself.currentdevice=device;
-                
             }
         }
         if(central.state==CBCentralManagerStateUnsupported)
@@ -636,7 +635,6 @@ typedef enum {
         }
         return NO;
     }];
-    
     //连接成功
     [baby setBlockOnConnected:^(CBCentralManager *central, CBPeripheral *peripheral) {
         zwjLog(@"设备：%@--连接成功",peripheral.name);
@@ -654,7 +652,6 @@ typedef enum {
         weakself.APPCancelConnect=NO;
         //[LocalNotifyFunc DeleteAllUserDefaultsAndCancelnotifyWithBlestate:weakself.blestate];
     }];
-    
     //发现设备的services委托
     [baby setBlockOnDiscoverServices:^(CBPeripheral *peripheral, NSError *error) {
         //zwjLog(@"发现服务");
@@ -696,10 +693,6 @@ typedef enum {
             {
                 zwjLog(@"UUIDSTR_ESPRESSIF_RX");
                 _WriteCharacteristic=characteristic;
-                
-                
-                
-                
             }
         }
     }];
@@ -866,7 +859,7 @@ typedef enum {
     
     if (self.currentdevice.Peripheral && Characteristic)
     {
-        zwjLog(@"发送的数据=%@,%ld",data,data.length);
+        zwjLog(@"发送的数据=%@,%lu",data,(unsigned long)data.length);
         [[baby findConnectedPeripherals].firstObject writeValue:data forCharacteristic:Characteristic type:CBCharacteristicWriteWithResponse];
         self.sequence=self.sequence+1;
     }
@@ -1226,7 +1219,7 @@ typedef enum {
 //menuDelegate 代理
 -(void)didClickMenuIndex:(NSInteger)index
 {
-    zwjLog(@"index=%ld",index);
+    zwjLog(@"index=%ld",(long)index);
 }
 
 -(void)analyseData:(NSMutableData *)data
@@ -1423,7 +1416,7 @@ typedef enum {
             break;
         case Wifi_List_DataSubType:
             zwjLog(@"======Wifi_List_DataSubType");
-            zwjLog(@"%@, %ld", data, data.length);
+            zwjLog(@"%@, %lu", data, (unsigned long)data.length);
             uint8_t ssid_length=dataByte[0];
             while (ssid_length>0) {
                 if (data.length<(ssid_length+1)) {

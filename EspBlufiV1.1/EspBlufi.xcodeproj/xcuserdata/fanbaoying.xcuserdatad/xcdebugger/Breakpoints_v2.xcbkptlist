@@ -9,13 +9,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EspBlufi/Main/MainView/BLE/Controller/DH_AES.m"
-            timestampString = "575178079.354974"
+            filePath = "EspBlufi/Main/MainView/BLE/Controller/BLEViewController.m"
+            timestampString = "575549480.385088"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "+blufi_aes_Encrypt:data:len:KeyData:"
+            startingLineNumber = "1047"
+            endingLineNumber = "1047"
+            landmarkName = "-setBlestate:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EspBlufi/Main/MainView/BLE/Controller/BLEViewController.m"
+            timestampString = "575549480.385173"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "-SetOpmode:Object:openmode:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EspBlufi/Main/MainView/CustomTool/ConfigureVC/ConfigureVC.m"
+            timestampString = "575549480.385921"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
+            landmarkName = "-okBtnClick"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

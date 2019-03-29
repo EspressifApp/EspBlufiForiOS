@@ -314,6 +314,7 @@
 //设置STA模式的ssid
 +(NSMutableData *)SetStationSsid:(NSString *)ssid  Sequence:(uint8_t)sequence Encrypt:(BOOL)Isencrypt WithKeyData:(NSData *)keydata
 {
+    NSData *Ssiddata=[ssid dataUsingEncoding:NSUTF8StringEncoding];
     uint8_t dataByte[4];
     dataByte[0]=(0x02<<2) | 0x01;            //数据包，设置Opmode
     if (Isencrypt) {
@@ -323,9 +324,9 @@
          dataByte[1]=0x00 | 0x02;             //不加密,有校验,手机发,没有后续包,无ACK
     }
     dataByte[2]=sequence;                     //序列
-    dataByte[3]=ssid.length;                  //data length
+    dataByte[3]=Ssiddata.length;                  //data length
     NSMutableData *data=[NSMutableData dataWithBytes:&dataByte length:sizeof(dataByte)];
-    NSData *Ssiddata=[ssid dataUsingEncoding:NSUTF8StringEncoding];
+    
     //计算校验码
     NSMutableData *Tempdata=[NSMutableData dataWithData:data];
     [Tempdata appendData:Ssiddata];
@@ -334,7 +335,7 @@
     if (Isencrypt) {
         Byte *byte=(Byte *)[Ssiddata bytes];
         
-        Ssiddata=[DH_AES blufi_aes_Encrypt:dataByte[2] data:byte len:(int)ssid.length KeyData:keydata];
+        Ssiddata=[DH_AES blufi_aes_Encrypt:dataByte[2] data:byte len:(int)Ssiddata.length KeyData:keydata];
     }
     //拼接
     [data appendData:Ssiddata];
@@ -382,6 +383,7 @@
 //设置SoftAP模式的ssid
 +(NSMutableData *)SetSoftAPSsid:(NSString *)ssid  Sequence:(uint8_t)sequence Encrypt:(BOOL)Isencrypt WithKeyData:(NSData *)keydata
 {
+    NSData *Ssiddata=[ssid dataUsingEncoding:NSUTF8StringEncoding];
     uint8_t dataByte[4];
     dataByte[0]=(0x04<<2) | 0x01;             //数据包，设置ssid
     if(Isencrypt)
@@ -392,9 +394,8 @@
         dataByte[1]=0x00 | 0x02;             //不加密,有校验,手机发,没有后续包,无ACK
     }
     dataByte[2]=sequence;                    //序列
-    dataByte[3]=ssid.length;                 //data length
+    dataByte[3]=Ssiddata.length;                 //data length
     NSMutableData *data=[NSMutableData dataWithBytes:&dataByte length:sizeof(dataByte)];
-    NSData *Ssiddata=[ssid dataUsingEncoding:NSUTF8StringEncoding];
     
     //计算校验码
     NSMutableData *Tempdata=[NSMutableData dataWithData:data];
@@ -403,7 +404,7 @@
     //加密
     if (Isencrypt) {
         Byte *byte=(Byte *)[Ssiddata bytes];
-        Ssiddata=[DH_AES blufi_aes_Encrypt:dataByte[2] data:byte len:(int)ssid.length KeyData:keydata];
+        Ssiddata=[DH_AES blufi_aes_Encrypt:dataByte[2] data:byte len:(int)Ssiddata.length KeyData:keydata];
     }
 
     //拼接

@@ -265,6 +265,7 @@
 		21F440AD1CCB50E6006113AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2678126021FB0B7600A3B94C /* sendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendViewController.h; sourceTree = "<group>"; };
 		2678126121FB0B7600A3B94C /* sendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendViewController.m; sourceTree = "<group>"; };
+		269D6D3E225C368900A5C23D /* EspBlufi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EspBlufi.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -654,6 +655,7 @@
 		21F440851CCB50E6006113AE /* EspBlufi */ = {
 			isa = PBXGroup;
 			children = (
+				269D6D3E225C368900A5C23D /* EspBlufi.entitlements */,
 				21FEB9BA1F335018004C5F94 /* blufiprotocol */,
 				2149B4DD1D546DD800084CB1 /* BLELib */,
 				2105F5341E8BE0F400492744 /* openssl */,
@@ -783,6 +785,9 @@
 						DevelopmentTeam = QWXF6GB4AV;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -1050,6 +1055,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EspBlufi/EspBlufi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Pei Chi Ng (56K59C55CS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pei Chi Ng (56K59C55CS)";
 				CODE_SIGN_STYLE = Manual;
@@ -1079,6 +1085,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EspBlufi/EspBlufi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Espressif Systems (Shanghai) Pte. Ltd. (QWXF6GB4AV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Espressif Systems (Shanghai) Pte. Ltd. (QWXF6GB4AV)";
 				CODE_SIGN_STYLE = Manual;

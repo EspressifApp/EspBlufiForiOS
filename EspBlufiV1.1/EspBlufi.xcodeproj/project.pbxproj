@@ -1056,7 +1056,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EspBlufi/EspBlufi.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pei Chi Ng (56K59C55CS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pei Chi Ng (56K59C55CS)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = QWXF6GB4AV;
@@ -1086,7 +1086,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EspBlufi/EspBlufi.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Espressif Systems (Shanghai) Pte. Ltd. (QWXF6GB4AV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Espressif Systems (Shanghai) Pte. Ltd. (QWXF6GB4AV)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = QWXF6GB4AV;
@@ -1157,6 +1157,106 @@
 			};
 			name = Release;
 		};
+		269D6D3F225D8E2600A5C23D /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AdHoc;
+		};
+		269D6D40225D8E2600A5C23D /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EspBlufi/EspBlufi.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Espressif Systems (Shanghai) Pte. Ltd. (QWXF6GB4AV)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = QWXF6GB4AV;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/EspBlufi/openssl/openssl/include/";
+				INFOPLIST_FILE = EspBlufi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EspBlufi/Main/MainView/BLE/Controller",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/EspBlufi/openssl",
+					"$(PROJECT_DIR)/EspBlufi/openssl/openssl",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.EspBlufi;
+				PRODUCT_NAME = EspBlufi;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = EspBlufiDistribution;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = AdHoc;
+		};
+		269D6D41225D8E2600A5C23D /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = EspBlufiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.joymed-tech.---Tests";
+				PRODUCT_NAME = EspBlufi;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EspBlufi.app/EspBlufi";
+			};
+			name = AdHoc;
+		};
+		269D6D42225D8E2600A5C23D /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = EspBlufiUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.joymed-tech.---UITests";
+				PRODUCT_NAME = EspBlufi;
+				TEST_TARGET_NAME = EspBlufi;
+			};
+			name = AdHoc;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1165,6 +1265,7 @@
 			buildConfigurations = (
 				21F440AE1CCB50E6006113AE /* Debug */,
 				21F440AF1CCB50E6006113AE /* Release */,
+				269D6D3F225D8E2600A5C23D /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1174,6 +1275,7 @@
 			buildConfigurations = (
 				21F440B11CCB50E6006113AE /* Debug */,
 				21F440B21CCB50E6006113AE /* Release */,
+				269D6D40225D8E2600A5C23D /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1183,6 +1285,7 @@
 			buildConfigurations = (
 				21F440B41CCB50E6006113AE /* Debug */,
 				21F440B51CCB50E6006113AE /* Release */,
+				269D6D41225D8E2600A5C23D /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1192,6 +1295,7 @@
 			buildConfigurations = (
 				21F440B71CCB50E6006113AE /* Debug */,
 				21F440B81CCB50E6006113AE /* Release */,
+				269D6D42225D8E2600A5C23D /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

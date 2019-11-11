@@ -845,9 +845,13 @@ typedef enum {
 -(void)Disconnect:(CBPeripheral *)Peripheral
 {
     self.APPCancelConnect=YES;
-    //取消某个连接
-    [baby cancelPeripheralConnection:Peripheral];
-    self.blestate=BleStateDisconnect;
+    BLEDevice *device = self.bleDevicesSaveDic[Peripheral.identifier.UUIDString];
+    if (device.isConnected) {
+        //取消某个连接
+        [baby cancelPeripheralConnection:Peripheral];
+        self.blestate=BleStateDisconnect;
+    }
+    
 }
 //取消所有连接
 -(void)CancelAllConnect

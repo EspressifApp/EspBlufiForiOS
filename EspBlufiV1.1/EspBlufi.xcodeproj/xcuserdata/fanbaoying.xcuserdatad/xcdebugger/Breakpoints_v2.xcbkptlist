@@ -15,8 +15,8 @@
             timestampString = "587623338.070958"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "854"
-            endingLineNumber = "854"
+            startingLineNumber = "858"
+            endingLineNumber = "858"
             landmarkName = "-CancelAllConnect"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,6 +46,22 @@
             startingLineNumber = "577"
             endingLineNumber = "577"
             landmarkName = "-BleDelegate"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CDFB3037-808C-438D-9C3B-21BE832644A4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EspBlufi/Main/MainView/BLE/Controller/BLEViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "849"
+            endingLineNumber = "849"
+            landmarkName = "-Disconnect:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

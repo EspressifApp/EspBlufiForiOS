@@ -1,53 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "C406CCC1-C793-4992-87A2-82F38CB2A6F4"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "16BFC5FD-1BBD-481D-9581-41DD2FA6BE0F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EspBlufi/Main/MainView/BLE/Controller/BLEViewController.m"
-            timestampString = "575549480.385088"
+            timestampString = "587623338.070958"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1047"
-            endingLineNumber = "1047"
-            landmarkName = "-setBlestate:"
+            startingLineNumber = "854"
+            endingLineNumber = "854"
+            landmarkName = "-CancelAllConnect"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "057DF589-A29A-4BF8-BEEF-10E27DCB88C7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "F7E6B2FA-A093-481A-987F-674E6717E7DC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EspBlufi/Main/MainView/BLE/Controller/BLEViewController.m"
-            timestampString = "575549480.385173"
+            timestampString = "587623338.073014"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
-            landmarkName = "-SetOpmode:Object:openmode:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EspBlufi/Main/MainView/CustomTool/ConfigureVC/ConfigureVC.m"
-            timestampString = "575549480.385921"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
-            landmarkName = "-okBtnClick"
+            startingLineNumber = "577"
+            endingLineNumber = "577"
+            landmarkName = "-BleDelegate"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

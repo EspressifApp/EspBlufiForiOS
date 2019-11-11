@@ -15,6 +15,7 @@
 #import <SystemConfiguration/CaptiveNetwork.h>
 
 #import "sendViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 #define ScreenW  [UIScreen mainScreen].bounds.size.width
 #define ScreenH  [UIScreen mainScreen].bounds.size.height
@@ -61,6 +62,8 @@ typedef enum
 @property(nonatomic,strong)UITextField *WifiPasswordTextField;
 @property(nonatomic,strong)UITextField *SoftAPSSidTextfield;
 @property(nonatomic,strong)UITextField *SoftAPPasswordTextfield;
+
+@property(nonatomic,strong)CLLocationManager *locationManagerSystem;
 
 
 @end
@@ -272,6 +275,10 @@ typedef enum
     WifiSsidTextField.delegate=self;
     WifiSsidTextField.returnKeyType=UIReturnKeyDone;
     self.WifiSSidTextField=WifiSsidTextField;
+    if (![self getUserLocationAuth]) {
+        _locationManagerSystem = [[CLLocationManager alloc]init];
+        [_locationManagerSystem requestWhenInUseAuthorization];
+    }
     WifiSsidTextField.text=[self getWifiName];
     
     //线
@@ -303,7 +310,7 @@ typedef enum
     //button.backgroundColor=[UIColor redColor];
     [Wifibutton addTarget:self action:@selector(Wifipasswordhide) forControlEvents:UIControlEventTouchUpInside];
     [Wifibutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [Wifibutton setImage:[UIImage imageNamed:@"password.png"] forState:UIControlStateNormal];
+    [Wifibutton setImage:[UIImage imageNamed:@"password"] forState:UIControlStateNormal];
     WifiPasswordTextField.rightView=Wifibutton;
     WifiPasswordTextField.rightViewMode=UITextFieldViewModeAlways;
     
@@ -750,6 +757,28 @@ typedef enum
     
     return wifiName;
     
+}
+
+- (BOOL)getUserLocationAuth {
+    BOOL result = NO;
+    switch ([CLLocationManager authorizationStatus]) {
+        case kCLAuthorizationStatusNotDetermined:
+            break;
+        case kCLAuthorizationStatusRestricted:
+            break;
+        case kCLAuthorizationStatusDenied:
+            break;
+        case kCLAuthorizationStatusAuthorizedAlways:
+            result = YES;
+            break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            result = YES;
+            break;
+            
+        default:
+            break;
+    }
+    return result;
 }
 
 @end

@@ -108,6 +108,8 @@ typedef enum {
 //@property(nonatomic, strong)NSDate *lastTime;
 @property(nonatomic, strong)NSMutableData *ESP32data;
 @property(nonatomic, assign)NSInteger length;
+
+@property(nonatomic, strong) NSMutableDictionary *bleDevicesSaveDic;
 @end
 
 @implementation BLEViewController
@@ -137,6 +139,8 @@ typedef enum {
     [self BleDelegate];
     //扫描到的蓝牙设备集合
     NSMutableArray *array=[NSMutableArray array];
+    //蓝牙设备连接存储
+    self.bleDevicesSaveDic = [NSMutableDictionary dictionaryWithCapacity:0];
     self.ESP32data=[NSMutableData data];
     self.length=0;
     self.BLEDeviceArray=array;
@@ -601,7 +605,9 @@ typedef enum {
             BLEDevice *device=[[BLEDevice alloc]init];
             device.name=name;
             device.Peripheral=peripheral;
+            device.uuidBle = peripheral.identifier.UUIDString;
             [weakself.BLEDeviceArray addObject:device];
+            weakself.bleDevicesSaveDic[device.uuidBle] = device;
 
             if (weakself.popview) {
                 weakself.popview.dataArray=weakself.BLEDeviceArray;
@@ -638,6 +644,8 @@ typedef enum {
     //连接成功
     [baby setBlockOnConnected:^(CBCentralManager *central, CBPeripheral *peripheral) {
         zwjLog(@"设备：%@--连接成功",peripheral.name);
+        BLEDevice *device = weakself.bleDevicesSaveDic[peripheral.identifier.UUIDString];
+        device.isConnected = YES;
         //取消自动回连功能(连接成功后必须清除自动回连,否则会崩溃)
         [weakself AutoReconnectCancel:weakself.currentdevice.Peripheral];
         
@@ -648,13 +656,15 @@ typedef enum {
     //设备连接失败
     [baby setBlockOnFailToConnect:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         zwjLog(@"设备：%@--连接失败",peripheral.name);
+        BLEDevice *device = weakself.bleDevicesSaveDic[peripheral.identifier.UUIDString];
+        device.isConnected = NO;
         //清除主动断开标志
         weakself.APPCancelConnect=NO;
         //[LocalNotifyFunc DeleteAllUserDefaultsAndCancelnotifyWithBlestate:weakself.blestate];
     }];
     //发现设备的services委托
     [baby setBlockOnDiscoverServices:^(CBPeripheral *peripheral, NSError *error) {
-        //zwjLog(@"发现服务");
+        zwjLog(@"发现服务");
         //更新蓝牙状态,进入已连接状态
         weakself.blestate=BleStateConnected;
         //weakself.title=weakself.currentdevice.name;
@@ -717,6 +727,9 @@ typedef enum {
         if (error) {
             zwjLog(@"断开连接Error %@",error);
         }
+        BLEDevice *device = weakself.bleDevicesSaveDic[peripheral.identifier.UUIDString];
+        device.isConnected = NO;
+        
         if (weakself.APPCancelConnect) {
             //清标志位
             weakself.APPCancelConnect=NO;
@@ -727,8 +740,10 @@ typedef enum {
             //更新蓝牙状态,已连接状态
             weakself.blestate=BleStateReConnect;
             //添加自动回连
-            [weakself AutoReconnect:weakself.currentdevice.Peripheral];
-             zwjLog(@"设备：%@--重新连接",peripheral.name);
+            if (weakself.currentdevice.Peripheral) {
+                [weakself AutoReconnect:weakself.currentdevice.Peripheral];
+                zwjLog(@"设备：%@--重新连接",peripheral.name);
+            }
         }
         //断开连接时,如果有数据就保存到数据库
     }];
@@ -782,7 +797,7 @@ typedef enum {
         }
         if (characteristic.isNotifying) {
             zwjLog(@"订阅成功");
-            //[weakself writeStructDataWithCharacteristic:weakself.WriteCharacteristic WithData:[PacketCommand GetDeviceInforWithSequence:weakself.sequence]];
+            [weakself writeStructDataWithCharacteristic:weakself.WriteCharacteristic WithData:[PacketCommand GetDeviceInforWithSequence:weakself.sequence]];
             [weakself SendNegotiateData];
         }
         else
@@ -1197,18 +1212,23 @@ typedef enum {
     if (index>=self.BLEDeviceArray.count) {
         return;
     }
+    
     //取出设备
-    BLEDevice *device=self.BLEDeviceArray[index];
+    BLEDevice *device = self.BLEDeviceArray[index];
     CBPeripheral *Peripheral=device.Peripheral;
-    //连接
-    [self connect:Peripheral];
-    //更新蓝牙状态,进入连接状态
-    self.blestate=BleStateConnecting;
-    //保存当前要连接的设备信息
-    self.currentdevice=device;
-    [self.popview.superview removeFromSuperview];
-    [self.popview removeFromSuperview];
-    self.popview=nil;
+    device.isConnected = NO;
+    
+    if (!device.isConnected) {
+        //连接
+        [self connect:Peripheral];
+        //更新蓝牙状态,进入连接状态
+        self.blestate=BleStateConnecting;
+        //保存当前要连接的设备信息
+        self.currentdevice=device;
+        [self.popview.superview removeFromSuperview];
+        [self.popview removeFromSuperview];
+        self.popview=nil;
+    }
 }
 
 -(void)dealloc
@@ -1244,9 +1264,10 @@ typedef enum {
         zwjLog(@"有加密");
         //解密
         Byte *byte=(Byte *)[Decryptdata bytes];
-        Decryptdata=[DH_AES blufi_aes_DecryptWithSequence:sequence data:byte len:length KeyData:self.Securtkey];
-        [data replaceBytesInRange:range withBytes:[Decryptdata bytes]];
-        
+        if (self.Securtkey != nil) {
+            Decryptdata=[DH_AES blufi_aes_DecryptWithSequence:sequence data:byte len:length KeyData:self.Securtkey];
+            [data replaceBytesInRange:range withBytes:[Decryptdata bytes]];
+        }
     }else{
         zwjLog(@"无加密");
     }
@@ -1361,6 +1382,7 @@ typedef enum {
         {
             //NSData *NegotiateData=[data subdataWithRange:NSMakeRange(4, length)];
             self.Securtkey=[DH_AES GetSecurtKey:data RsaObject:self.rsaobject];
+            NSLog(@"%@", self.Securtkey);
             //设置加密模式
             NSData *SetSecuritydata=[PacketCommand SetESP32ToPhoneSecurityWithSecurity:YES CheckSum:YES Sequence:self.sequence];
             [self writeStructDataWithCharacteristic:_WriteCharacteristic WithData:SetSecuritydata];
@@ -1529,31 +1551,25 @@ typedef enum {
     
     //发送数据,需要分包
     self.senddata=[PacketCommand GenerateNegotiateData:self.rsaobject];
-    NSInteger number=self.senddata.length/datacount;
+//    NSInteger number=self.senddata.length/datacount;
+    NSInteger number = self.senddata.length / datacount + ((self.senddata.length % datacount)>0? 1:0);
+    NSLog(@"number:%ld",(long)number);
     if (number>0) {
-        for(NSInteger i=0;i<number+1;i++)
-        {
-            if (i==number) {
-                [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:NO block:^(NSTimer * _Nonnull timer)
-                {
-                    NSData *data=[PacketCommand SendNegotiateData:self.senddata Sequence:self.sequence Frag:NO TotalLength:self.senddata.length];
-                    [self writeStructDataWithCharacteristic:_WriteCharacteristic WithData:data];
-                }];
+        for(NSInteger i = 0;i < number;i ++){
+            if (i == number-1) {
+                NSLog(@"i:%ld",(long)i);
+                NSData *data=[PacketCommand SendNegotiateData:self.senddata Sequence:self.sequence Frag:NO TotalLength:self.senddata.length];
+                [self writeStructDataWithCharacteristic:_WriteCharacteristic WithData:data];
                 
-            }
-            else
-            {
-                [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:NO block:^(NSTimer * _Nonnull timer)
-                {
-                     NSData *data=[PacketCommand SendNegotiateData:[self.senddata subdataWithRange:NSMakeRange(0, datacount)] Sequence:self.sequence Frag:YES TotalLength:self.senddata.length];
-                     [self writeStructDataWithCharacteristic:_WriteCharacteristic WithData:data];
-                     self.senddata=[self.senddata subdataWithRange:NSMakeRange(datacount, self.senddata.length-datacount)];
-                 }];
+            }else {
+                NSLog(@"self.senddata.length:%lu",(unsigned long)self.senddata.length);
+                NSData *data=[PacketCommand SendNegotiateData:[self.senddata subdataWithRange:NSMakeRange(0, datacount)] Sequence:self.sequence Frag:YES TotalLength:self.senddata.length];
+                [self writeStructDataWithCharacteristic:_WriteCharacteristic WithData:data];
+                self.senddata=[self.senddata subdataWithRange:NSMakeRange(datacount, self.senddata.length-datacount)];
             }
         }
         
-    }else
-    {
+    }else {
         NSData *data=[PacketCommand SendNegotiateData:self.senddata Sequence:self.sequence Frag:NO TotalLength:self.senddata.length];
         [self writeStructDataWithCharacteristic:_WriteCharacteristic WithData:data];
     }

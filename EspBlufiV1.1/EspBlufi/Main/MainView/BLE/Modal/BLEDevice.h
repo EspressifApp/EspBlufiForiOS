@@ -13,4 +13,6 @@
 
 @property(nonatomic,copy)NSString *name;
 @property(nonatomic,strong)CBPeripheral *Peripheral;
+@property(nonatomic,assign) BOOL isConnected;
+@property(nonatomic, strong) NSString *uuidBle;
 @end

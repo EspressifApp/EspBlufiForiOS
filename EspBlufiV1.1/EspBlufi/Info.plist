@@ -79,13 +79,21 @@
 		</dict>
 	</dict>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>是否允许此APP使用蓝牙?</string>
+	<string>此应用程序使用蓝牙与设备通信，此应用程序不收集、存储或记录任何通过蓝牙通信的数据</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>此应用程序使用蓝牙与设备通信，此应用程序不收集、存储或记录任何通过蓝牙通信的数据</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>是否允许此APP使用日历?</string>
 	<key>NSCameraUsageDescription</key>
 	<string>是否允许此APP使用相机?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>是否允许此APP使用你的相册?</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>此应用程序使用位置权限获取当前连接的wi-fi信息，用于设备STA配置。本应用程序不收集、存储或记录任何通过位置权限得到的数据。</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>此应用程序使用位置权限获取当前连接的wi-fi信息，用于设备STA配置。本应用程序不收集、存储或记录任何通过位置权限得到的数据。</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>此应用程序使用位置权限获取当前连接的wi-fi信息，用于设备STA配置。本应用程序不收集、存储或记录任何通过位置权限得到的数据。</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>

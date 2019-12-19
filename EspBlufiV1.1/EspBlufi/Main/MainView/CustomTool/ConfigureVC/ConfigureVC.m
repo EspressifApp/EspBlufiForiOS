@@ -208,6 +208,7 @@ typedef enum
     [Softview addSubview:SoftSsidTextField];
     SoftSsidTextField.delegate=self;
     SoftSsidTextField.returnKeyType=UIReturnKeyDone;
+    SoftSsidTextField.textColor=[UIColor colorWithHexString:@"#666666"];
     self.SoftAPSSidTextfield=SoftSsidTextField;
     
     UIView *line=[[UIView alloc]initWithFrame:CGRectMake(0,self.SoftAPSSidTextfield.frame.size.height-2, self.SoftAPSSidTextfield.frame.size.width, 1)];
@@ -237,6 +238,7 @@ typedef enum
     SoftAPPasswordTextField.delegate=self;
     SoftAPPasswordTextField.returnKeyType=UIReturnKeyDone;
     SoftAPPasswordTextField.secureTextEntry=YES;
+    SoftAPPasswordTextField.textColor=[UIColor colorWithHexString:@"#666666"];
     //右侧按键
     UIButton *SoftAPbutton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, Height, Height)];
     //SoftAPbutton.backgroundColor=[UIColor redColor];
@@ -274,6 +276,7 @@ typedef enum
     [wifiView addSubview:WifiSsidTextField];
     WifiSsidTextField.delegate=self;
     WifiSsidTextField.returnKeyType=UIReturnKeyDone;
+    WifiSsidTextField.textColor=[UIColor colorWithHexString:@"#666666"];
     self.WifiSSidTextField=WifiSsidTextField;
     if (![self getUserLocationAuth]) {
         _locationManagerSystem = [[CLLocationManager alloc]init];

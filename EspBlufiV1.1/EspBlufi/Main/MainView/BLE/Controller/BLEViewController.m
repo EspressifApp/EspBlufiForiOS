@@ -168,29 +168,31 @@ typedef enum {
     CGFloat offset=(HEIGHT/2-ArcMargin-5*labelH-buttonH)/7;
     UILabel *Opmodelabel=[[UILabel alloc]initWithFrame:CGRectMake(0, labelY+offset, WIDTH, labelH)];
     Opmodelabel.textAlignment=NSTextAlignmentCenter;
-    //Opmodelabel.backgroundColor=[UIColor redColor];
+    Opmodelabel.textColor=[UIColor blackColor];
     [self.view addSubview:Opmodelabel];
     self.Opmodelabel=Opmodelabel;
     
     UILabel *STAStatelabel=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(Opmodelabel.frame)+offset, WIDTH, labelH)];
     STAStatelabel.textAlignment=NSTextAlignmentCenter;
-    //STAStatelabel.backgroundColor=[UIColor redColor];
+    STAStatelabel.textColor=[UIColor blackColor];
     [self.view addSubview:STAStatelabel];
     self.STAStatelabel=STAStatelabel;
     
     UILabel *STACountlabel=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(STAStatelabel.frame)+offset, WIDTH, labelH)];
-    //STACountlabel.backgroundColor=[UIColor redColor];
+    STACountlabel.textColor=[UIColor blackColor];
     STACountlabel.textAlignment=NSTextAlignmentCenter;
     [self.view addSubview:STACountlabel];
     self.STACountlabel=STACountlabel;
     
     UILabel *BSSidSTAlabel=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(STACountlabel.frame)+offset, WIDTH, labelH)];
     BSSidSTAlabel.textAlignment=NSTextAlignmentCenter;
+    BSSidSTAlabel.textColor=[UIColor blackColor];
     [self.view addSubview:BSSidSTAlabel];
     self.BSSidSTAlabel=BSSidSTAlabel;
     
     UILabel *SSidSTAlabel=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(BSSidSTAlabel.frame)+offset, WIDTH, labelH)];
     SSidSTAlabel.textAlignment=NSTextAlignmentCenter;
+    SSidSTAlabel.textColor=[UIColor blackColor];
     [self.view addSubview:SSidSTAlabel];
     self.SSidSTAlabel=SSidSTAlabel;
     
@@ -1221,18 +1223,15 @@ typedef enum {
     BLEDevice *device = self.BLEDeviceArray[index];
     CBPeripheral *Peripheral=device.Peripheral;
     device.isConnected = NO;
-    
-    if (!device.isConnected) {
-        //连接
-        [self connect:Peripheral];
-        //更新蓝牙状态,进入连接状态
-        self.blestate=BleStateConnecting;
-        //保存当前要连接的设备信息
-        self.currentdevice=device;
-        [self.popview.superview removeFromSuperview];
-        [self.popview removeFromSuperview];
-        self.popview=nil;
-    }
+    //连接
+    [self connect:Peripheral];
+    //更新蓝牙状态,进入连接状态
+    self.blestate=BleStateConnecting;
+    //保存当前要连接的设备信息
+    self.currentdevice=device;
+    [self.popview.superview removeFromSuperview];
+    [self.popview removeFromSuperview];
+    self.popview=nil;
 }
 
 -(void)dealloc

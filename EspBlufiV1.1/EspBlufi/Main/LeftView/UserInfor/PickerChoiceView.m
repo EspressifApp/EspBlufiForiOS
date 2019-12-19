@@ -529,10 +529,13 @@
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
     
+    ((UIView *)[pickerView.subviews objectAtIndex:1]).backgroundColor = [UIColor lightGrayColor];
+    ((UIView *)[pickerView.subviews objectAtIndex:2]).backgroundColor = [UIColor lightGrayColor];
+    
     UILabel *label=[[UILabel alloc] init];
     label.textAlignment = NSTextAlignmentCenter;
     label.text=[self pickerView:pickerView titleForRow:row forComponent:component];
-    //label.textColor=[UIColor colorWithHexString:@"#7aC4Eb"];
+    label.textColor=[UIColor colorWithHexString:@"#7aC4Eb"];
     label.font=[UIFont boldSystemFontOfSize:15];
     return label;
     

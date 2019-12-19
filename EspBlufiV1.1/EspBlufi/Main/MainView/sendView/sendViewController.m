@@ -32,9 +32,13 @@
 
 - (void)sendView {
     self.sendDataTextField = [[UITextField alloc]initWithFrame:CGRectMake(10, 20, SCREEN_WIDTH-20, 50)];
-    self.sendDataTextField.backgroundColor = [UIColor colorWithHexString:@"#e6e6e6"];
+//    self.sendDataTextField.backgroundColor = [UIColor colorWithHexString:@"#e6e6e6"];
     self.sendDataTextField.placeholder = @"请输入需要发送的数据";
     [self.view addSubview:_sendDataTextField];
+    
+    UIView *WifiSsidline=[[UIView alloc]initWithFrame:CGRectMake(10, 70, SCREEN_WIDTH - 20, 1)];
+    WifiSsidline.backgroundColor=[UIColor lightGrayColor];
+    [self.view addSubview:WifiSsidline];
     
     UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(120, 90, SCREEN_WIDTH-240, 50)];
     //btn.backgroundColor=[UIColor redColor];

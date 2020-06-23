@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  EspBlufi
+
+  Created by fanbaoying on 2020/6/11.
+  Copyright © 2020 espressif. All rights reserved.
+*/
+"EspBlufi-nav-title" = "EspBluFi";
+"EspBlufi-Setting" = "设置";
+"EspBlufi-Setting-sign" = "BluFi";
+"EspBlufi-Setting-filter" = "BLE 设备过滤";
+"EspBlufi-filter-content" = "请输入过滤内容";
+"EspBlufi-version" = "版本";
+"EspBlufi-app-version" = "App 版本";
+"EspBlufi-sdk-version" = "BluFi 库版本";
+"EspBlufi-update" = "检查更新";
+"EspBlufi-update-reminder" = "发现新版本 App, 点击去安装更新";
+"EspBlufi-operation-connect" = "连接";
+"EspBlufi-operation-disConnect" = "断开";
+"EspBlufi-operation-encryption" = "加密";
+"EspBlufi-operation-version" = "版本";
+"EspBlufi-operation-provision" = "配网";
+"EspBlufi-operation-state" = "状态";
+"EspBlufi-operation-scan" = "扫描";
+"EspBlufi-operation-custom" = "自定义";
+"EspBlufi-custom-data" = "自定义数据";
+"EspBlufi-custom-data-hint" = "输入自定义数据";
+"EspBlufi-configure" = "配置";
+"EspBlufi-configure-opmode" = "OpMode";
+"EspBlufi-configure-security" = "加密：";
+"EspBlufi-configure-channel" = "信道：";
+"EspBlufi-configure-max-connect" = "最大连接：";
+"EspBlufi-configure-softap-ssid" = "SoftAP SSID";
+"EspBlufi-configure-softap-password" = "SoftAP 密码";
+"EspBlufi-configure-station-ssid" = "Wi-Fi SSID";
+"EspBlufi-configure-station-password" = "Wi-Fi 密码";
+"EspBlufi-configure-params-invalid" = "参数不完整";
+"ok"="确定";
+"cancel"="取消";

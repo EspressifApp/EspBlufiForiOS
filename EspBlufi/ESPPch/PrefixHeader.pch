@@ -1,0 +1,33 @@
+//
+//  PrefixHeader.pch
+//  EspBlufi
+//
+//  Created by fanbaoying on 2020/6/10.
+//  Copyright © 2020 espressif. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define INTERNATIONAL
+#ifdef INTERNATIONAL
+#define INTER_STR(a)   (NSLocalizedString(a, nil))
+#else
+#define INTER_STR(a)   (a)
+#endif
+
+#define ValidArray(f) (f!=nil && [f isKindOfClass:[NSArray class]] && [f count]>0)
+
+#define navColor [UIColor colorWithRed:250/255.0 green:45/255.0 blue:40/255.0 alpha:1]
+#define APPTITLECOLOR [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1]
+//带有RGBA的颜色设置
+#define UICOLOR_RGBA(R, G, B, A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
+#define statusHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* PrefixHeader_pch */

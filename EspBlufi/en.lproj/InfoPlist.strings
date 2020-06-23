@@ -1,0 +1,8 @@
+/* 
+  InfoPlist.strings
+  EspBlufi
+
+  Created by fanbaoying on 2020/6/11.
+  Copyright © 2020 espressif. All rights reserved.
+*/
+CFBundleDisplayName = "EspBlufi";

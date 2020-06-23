@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  EspBlufi
+
+  Created by fanbaoying on 2020/6/11.
+  Copyright © 2020 espressif. All rights reserved.
+*/
+"EspBlufi-nav-title" = "EspBluFi";
+"EspBlufi-Setting" = "Setting";
+"EspBlufi-Setting-sign" = "BluFi";
+"EspBlufi-Setting-filter" = "BLE device filtering";
+"EspBlufi-filter-content" = "Please enter the filter content";
+"EspBlufi-version" = "Version";
+"EspBlufi-app-version" = "App Version";
+"EspBlufi-sdk-version" = "BluFi library version";
+"EspBlufi-update" = "Check for updates";
+"EspBlufi-update-reminder" = "Found new version of App, click to install update";
+"EspBlufi-operation-connect" = "Connect";
+"EspBlufi-operation-disConnect" = "Disconnect";
+"EspBlufi-operation-encryption" = "Encryption";
+"EspBlufi-operation-version" = "Version";
+"EspBlufi-operation-provision" = "Provision";
+"EspBlufi-operation-state" = "State";
+"EspBlufi-operation-scan" = "Scan";
+"EspBlufi-operation-custom" = "Custom";
+"EspBlufi-custom-data" = "Custom Data";
+"EspBlufi-custom-data-hint" = "Enter custom data";
+"EspBlufi-configure" = "Configure";
+"EspBlufi-configure-opmode" = "OpMode";
+"EspBlufi-configure-security" = "Security:";
+"EspBlufi-configure-channel" = "Channel:";
+"EspBlufi-configure-max-connect" = "MaxConnect:";
+"EspBlufi-configure-softap-ssid" = "SoftAP SSID";
+"EspBlufi-configure-softap-password" = "SoftAP Password";
+"EspBlufi-configure-station-ssid" = "Wi-Fi SSID";
+"EspBlufi-configure-station-password" = "Wi-Fi Password";
+"EspBlufi-configure-params-invalid" = "Params Invalid";
+"ok"="OK";
+"cancel"="cancel";

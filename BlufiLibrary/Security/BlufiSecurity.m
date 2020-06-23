@@ -13,17 +13,6 @@
 #import <openssl/dh.h>
 #import <openssl/bn.h>
 
-// Should make these numbers massive to be more secure
-// Bigger the number the slower the algorithm
-#define MAX_RANDOM_NUMBER 2147483648
-#define MAX_PRIME_NUMBER   2147483648
-
-// Linear Feedback Shift Registers
-#define LFSR(n)    {if (n&1) n=((n^0x80000055)>>1)|0x80000000; else n>>=1;}
-
-// Rotate32
-#define ROT(x, y)  (x=(x<<y)|(x>>(32-y)))
-
 @implementation BlufiSecurity
 
 const NSInteger CRC_TB[] = {

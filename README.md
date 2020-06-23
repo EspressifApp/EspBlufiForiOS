@@ -9,3 +9,10 @@ This is a demo app to control the ESP device which run [BluFi](https://github.co
 
 ## Update Log
 - See [Log](log/updatelog-en.md)
+
+## Configure Project
+
+Configure openssl
+
+* Drag the BlufiLibrary file into the project root directory.
+* Add **$(inherited)** and **$(PROJECT_DIR)/(project name)/BlufiLibrary/Security/openssl** to **Library Search Paths**.

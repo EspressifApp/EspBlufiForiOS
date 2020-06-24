@@ -16,3 +16,4 @@ Configure openssl
 
 * Drag the BlufiLibrary file into the project root directory.
 * Add **$(inherited)** and **$(PROJECT_DIR)/(project name)/BlufiLibrary/Security/openssl** to **Library Search Paths**.
+* Add **$(SRCROOT)/(project name)/BlufiLibrary/Security/openssl/include/** to **Header Search Paths**

@@ -81,6 +81,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2662E41C24A305B10074383A /* ESPHeaderFiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESPHeaderFiles.h; sourceTree = "<group>"; };
 		26835A25248FAD93003B1BC6 /* EspBlufi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EspBlufi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26835A28248FAD93003B1BC6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		26835A29248FAD93003B1BC6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -588,11 +589,12 @@
 				8098C750248FB42B00B73F4D /* Data */,
 				8098C746248FB38900B73F4D /* Response */,
 				8098C733248FB1B700B73F4D /* BlufiClient.h */,
-				8098C734248FB1B700B73F4D /* BlufiClient.m */,
+				8098C74D248FB3D000B73F4D /* BlufiVersionResponse.h */,
+				8098C747248FB3AE00B73F4D /* BlufiScanResponse.h */,
+				8098C74A248FB3BE00B73F4D /* BlufiStatusResponse.h */,
+				2662E41C24A305B10074383A /* ESPHeaderFiles.h */,
 				8098C740248FB31600B73F4D /* BlufiConfigureParams.h */,
-				8098C741248FB31600B73F4D /* BlufiConfigureParams.m */,
 				8098C743248FB33E00B73F4D /* BlufiConstants.h */,
-				8098C744248FB33E00B73F4D /* BlufiConstants.m */,
 			);
 			path = BlufiLibrary;
 			sourceTree = "<group>";
@@ -600,11 +602,11 @@
 		8098C746248FB38900B73F4D /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				8098C747248FB3AE00B73F4D /* BlufiScanResponse.h */,
 				8098C748248FB3AE00B73F4D /* BlufiScanResponse.m */,
-				8098C74A248FB3BE00B73F4D /* BlufiStatusResponse.h */,
 				8098C74B248FB3BE00B73F4D /* BlufiStatusResponse.m */,
-				8098C74D248FB3D000B73F4D /* BlufiVersionResponse.h */,
+				8098C741248FB31600B73F4D /* BlufiConfigureParams.m */,
+				8098C744248FB33E00B73F4D /* BlufiConstants.m */,
+				8098C734248FB1B700B73F4D /* BlufiClient.m */,
 				8098C74E248FB3D000B73F4D /* BlufiVersionResponse.m */,
 			);
 			path = Response;

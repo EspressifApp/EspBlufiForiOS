@@ -26,15 +26,15 @@
 		<true/>
 	</dict>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>此应用程序使用蓝牙与设备通信，此应用程序不收集、存储或记录任何通过蓝牙通信的数据</string>
+	<string>This application uses Bluetooth to communicate with the device, this application does not collect, store or record any data that communicates via Bluetooth.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>此应用程序使用蓝牙与设备通信，此应用程序不收集、存储或记录任何通过蓝牙通信的数据</string>
+	<string>This application uses Bluetooth to communicate with the device, this application does not collect, store or record any data that communicates via Bluetooth.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>此应用程序使用位置权限获取当前连接的wi-fi信息，用于设备STA配置。本应用程序不收集、存储或记录任何通过位置权限得到的数据。</string>
+	<string>This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>此应用程序使用位置权限获取当前连接的wi-fi信息，用于设备STA配置。本应用程序不收集、存储或记录任何通过位置权限得到的数据。</string>
+	<string>This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>此应用程序使用位置权限获取当前连接的wi-fi信息，用于设备STA配置。本应用程序不收集、存储或记录任何通过位置权限得到的数据。</string>
+	<string>This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

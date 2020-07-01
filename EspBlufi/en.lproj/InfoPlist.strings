@@ -6,3 +6,8 @@
   Copyright © 2020 espressif. All rights reserved.
 */
 CFBundleDisplayName = "EspBlufi";
+NSLocationAlwaysAndWhenInUseUsageDescription = "This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.";
+NSLocationAlwaysUsageDescription = "This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.";
+NSLocationWhenInUseUsageDescription = "This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.";
+NSBluetoothAlwaysUsageDescription = "This application uses Bluetooth to communicate with the device, this application does not collect, store or record any data that communicates via Bluetooth.";
+NSBluetoothPeripheralUsageDescription = "This application uses Bluetooth to communicate with the device, this application does not collect, store or record any data that communicates via Bluetooth.";

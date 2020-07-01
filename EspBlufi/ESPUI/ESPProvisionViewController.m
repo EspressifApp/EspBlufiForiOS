@@ -37,7 +37,7 @@ typedef enum {
     Othermode,
 } SoftPasswordMode;
 
-@interface ESPProvisionViewController ()<TFPickerDelegate, UITextFieldDelegate>
+@interface ESPProvisionViewController ()<TFPickerDelegate, UITextFieldDelegate, CLLocationManagerDelegate>
 
 @property(nonatomic,assign)NSInteger selectindex;
 @property(nonatomic,strong)UIScrollView *scrollview;
@@ -272,6 +272,7 @@ typedef enum {
     self.WifiSSidTextField = WifiSsidTextField;
     if (![self getUserLocationAuth]) {
         _locationManagerSystem = [[CLLocationManager alloc]init];
+        _locationManagerSystem.delegate = self;
         [_locationManagerSystem requestWhenInUseAuthorization];
     }
     WifiSsidTextField.text = [self getWifiName];
@@ -440,6 +441,7 @@ typedef enum {
 }
 
 -(void)setDisplaymode:(OpMode)displaymode {
+    self.WifiSSidTextField.text = [self getWifiName];
     _displaymode = displaymode;
     switch (displaymode) {
         case OpModeNull:
@@ -652,6 +654,37 @@ typedef enum {
     CFRelease(wifiInterfaces);
     return wifiName;
     
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    BOOL result = NO;
+    switch (status) {
+           case kCLAuthorizationStatusNotDetermined:
+               break;
+           case kCLAuthorizationStatusRestricted:
+               break;
+           case kCLAuthorizationStatusDenied:
+                result = YES;
+               break;
+           case kCLAuthorizationStatusAuthorizedAlways:
+               break;
+           case kCLAuthorizationStatusAuthorizedWhenInUse:
+               break;
+               
+           default:
+               break;
+       }
+    if (result) {
+         UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"EspBlufi-location-title", nil) message:NSLocalizedString(@"EspBlufi-location-content", nil) preferredStyle:UIAlertControllerStyleAlert];
+         
+         UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspBlufi-cancel", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+         UIAlertAction *action2 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspBlufi-set", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+         }];
+         [alert addAction:action1];
+         [alert addAction:action2];
+         [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (BOOL)getUserLocationAuth {

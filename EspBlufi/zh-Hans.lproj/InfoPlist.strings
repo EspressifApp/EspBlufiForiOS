@@ -6,3 +6,8 @@
   Copyright © 2020 espressif. All rights reserved.
 */
 CFBundleDisplayName = "EspBlufi";
+NSLocationAlwaysAndWhenInUseUsageDescription = "此应用程序使用位置权限来获取当前连接的Wi-Fi信息。 此应用程序不收集，存储或记录任何位置数据。";
+NSLocationAlwaysUsageDescription = "此应用程序使用位置权限来获取当前连接的Wi-Fi信息。 此应用程序不收集，存储或记录任何位置数据。";
+NSLocationWhenInUseUsageDescription = "此应用程序使用位置权限来获取当前连接的Wi-Fi信息。 此应用程序不收集，存储或记录任何位置数据。";
+NSBluetoothAlwaysUsageDescription = "此应用程序使用蓝牙与设备通信，此应用程序不收集、存储或记录任何通过蓝牙通信的数据";
+NSBluetoothPeripheralUsageDescription = "此应用程序使用蓝牙与设备通信，此应用程序不收集、存储或记录任何通过蓝牙通信的数据";

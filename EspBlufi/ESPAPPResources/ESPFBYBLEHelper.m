@@ -76,7 +76,7 @@
 {
     switch (central.state) {
         case CBManagerStateUnknown:{
-            NSLog(@"为知状态");
+            NSLog(@"未知状态");
             self.peripheralState = central.state;
         }
             break;

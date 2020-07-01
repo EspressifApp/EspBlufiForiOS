@@ -37,3 +37,7 @@
 "EspBlufi-configure-params-invalid" = "参数不完整";
 "ok"="确定";
 "cancel"="取消";
+"EspBlufi-location-title" = "定位服务已关闭";
+"EspBlufi-location-content" = "您需要打开定位权限，才可以获取到 Wi-Fi 信息进行配网。请到设置 -> 隐私 -> 定位服务中开启 [EspBlufi] 定位服务";
+"EspBlufi-cancel" = "取消";
+"EspBlufi-set" = "设置";

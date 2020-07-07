@@ -16,7 +16,7 @@
 #define PACKAGE_LENGTH_MIN       20
 #define PACKAGE_HEADER_LENGTH    4
 
-#define DBUG true
+#define DBUG false
 
 typedef enum {
     StateConnected = 0,
@@ -243,7 +243,7 @@ enum {
         return;
     }
     if (DBUG) {
-        NSLog(@"Blufi GattWrite Length: %ld,  %@", data.length, data);
+        NSLog(@"Blufi GattWrite Length: %lu,  %@", (unsigned long)data.length, data);
     }
     [_peripheral writeValue:data forCharacteristic:_writeChar type:CBCharacteristicWriteWithResponse];
     [_writeCondition wait];
@@ -306,7 +306,7 @@ enum {
             read = [dataIS read:last maxLength:available];
             if (read != available) {
                 // Impossiable come here
-                NSLog(@"postContainData: read last bytes error: read=%ld, expect=%ld", read, available);
+                NSLog(@"postContainData: read last bytes error: read=%ld, expect=%ld", (long)read, (long)available);
             }
             [dataContent appendBytes:last length:available];
             available -= read;
@@ -1007,8 +1007,10 @@ enum {
             
             NSData *secretKey = [blufiDH generateSecret:deviceKey];
             self.aesKey = [BlufiSecurity md5:secretKey];
-            NSLog(@"DH Secret = %@", secretKey);
-            NSLog(@"AES Key   = %@", self.aesKey);
+            if (DBUG) {
+                NSLog(@"DH Secret = %@", secretKey);
+                NSLog(@"AES Key   = %@", self.aesKey);
+            }
             
             setSecurity = [self postSetSecurityCtrlEncrypted:NO ctrlChecksum:NO dataEncrypted:YES dataChecksum:YES];
             if (!setSecurity) {

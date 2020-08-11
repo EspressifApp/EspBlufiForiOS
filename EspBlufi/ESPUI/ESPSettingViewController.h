@@ -10,8 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define SettingsFilter @"filterContent"
-
 @interface ESPSettingViewController : UIViewController
 
 @end

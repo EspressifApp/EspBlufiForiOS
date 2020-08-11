@@ -16,8 +16,6 @@
 #import "ESPFBYBLEHelper.h"
 #import "ESPDataConversion.h"
 
-#define DefaultFilter @"BLUFI"
-
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong) FFDropDownMenuView *dropDownMenu;
 @property(nonatomic, strong) UITableView *peripheralView;
@@ -47,10 +45,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.filterContent = [ESPDataConversion fby_getNSUserDefaults:SettingsFilter];
-    if (!self.filterContent || self.filterContent.length == 0) {
-        self.filterContent = DefaultFilter;
-    }
+    self.filterContent = [ESPDataConversion loadBlufiScanFilter];
     [self scanDeviceInfo];
 }
 

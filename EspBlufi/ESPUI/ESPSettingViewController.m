@@ -53,6 +53,8 @@
     [self.filterContent addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deviceFilter)]];
     self.filterContent.userInteractionEnabled = YES;
     self.filterContent.font = [UIFont systemFontOfSize:16.0];
+    NSString *filterText = [ESPDataConversion loadBlufiScanFilter];
+    self.filterContent.text = filterText;
     [headerView addSubview:_filterContent];
     
     UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 129, SCREEN_WIDTH, 1)];
@@ -93,7 +95,7 @@
     [alertController addAction:[UIAlertAction actionWithTitle:INTER_STR(@"ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *filterTextField = alertController.textFields.firstObject;
         self.filterContent.text = filterTextField.text;
-        [ESPDataConversion fby_saveNSUserDefaults:filterTextField.text withKey:SettingsFilter];
+        [ESPDataConversion saveBlufiScanFilter:filterTextField.text];
         NSLog(@"过滤条件: %@", filterTextField.text);
     }]];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {

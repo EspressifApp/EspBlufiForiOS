@@ -8,6 +8,10 @@
 
 #import "ESPDataConversion.h"
 
+#define SettingsFilter @"filterContent"
+#define UseCustomFilter @"useCustomFilter"
+#define DefaultFilter @"BLUFI"
+
 @implementation ESPDataConversion
 
 /**
@@ -49,6 +53,23 @@
     [version synchronize];
     
     return fbyVersion;
+}
+
++ (BOOL)saveBlufiScanFilter:(NSString *)filter {
+    if (![self fby_saveNSUserDefaults:filter withKey:SettingsFilter]) {
+        return NO;
+    }
+    [self fby_saveNSUserDefaults:@YES withKey:UseCustomFilter];
+    return YES;
+}
+
++ (NSString *)loadBlufiScanFilter {
+    id custom = [self fby_getNSUserDefaults:UseCustomFilter];
+    NSLog(@"loadBlufiScanFilter %@", custom);
+    if (!custom || ![custom boolValue]) {
+        return DefaultFilter;
+    }
+    return [self fby_getNSUserDefaults:SettingsFilter];
 }
 
 @end

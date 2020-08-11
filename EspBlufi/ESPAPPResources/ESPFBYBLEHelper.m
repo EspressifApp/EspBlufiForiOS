@@ -61,9 +61,6 @@
  */
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI {
 //    NSLog(@"扫描到设备: %@",peripheral.name);
-    if (peripheral.name == nil) {
-        return;
-    }
     ESPPeripheral *espPeripheral = [[ESPPeripheral alloc] initWithPeripheral:peripheral];
     espPeripheral.rssi = RSSI.intValue;
     if (self.bleScanSuccessBlock) {

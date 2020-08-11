@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (id)fby_getNSUserDefaults:(NSString *)key;
 
++ (BOOL)saveBlufiScanFilter:(NSString *)filter;
+
++ (NSString *)loadBlufiScanFilter;
 @end
 
 NS_ASSUME_NONNULL_END

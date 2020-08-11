@@ -609,12 +609,12 @@ enum {
         }
             break;
         case DataSubTypeStaSsid: {
-            NSString *ssid = [[NSString alloc] initWithBytes:data length:length encoding:kCFStringEncodingUTF8];
+            NSString *ssid = [[NSString alloc] initWithBytes:data length:length encoding:NSUTF8StringEncoding];
             response.staSsid = ssid;
         }
             break;
         case DataSubTypeStaPassword: {
-            NSString *password = [[NSString alloc] initWithBytes:data length:length encoding:kCFStringEncodingUTF8];
+            NSString *password = [[NSString alloc] initWithBytes:data length:length encoding:NSUTF8StringEncoding];
             response.staPassword = password;
         }
             break;
@@ -628,12 +628,12 @@ enum {
             response.softApMaxConnection = data[0];
             break;
         case DataSubTypeSoftAPPassword: {
-            NSString *password = [[NSString alloc] initWithBytes:data length:length encoding:kCFStringEncodingUTF8];
+            NSString *password = [[NSString alloc] initWithBytes:data length:length encoding:NSUTF8StringEncoding];
             response.softApPassword = password;
         }
             break;
         case DataSubTypeSoftAPSsid: {
-            NSString *ssid = [[NSString alloc] initWithBytes:data length:length encoding:kCFStringEncodingUTF8];
+            NSString *ssid = [[NSString alloc] initWithBytes:data length:length encoding:NSUTF8StringEncoding];
             response.softApSsid = ssid;
         }
             break;
@@ -673,7 +673,7 @@ enum {
             NSLog(@"parseWiFiScanList invalid ssid data");
             break;
         }
-        NSString *ssid = [[NSString alloc] initWithBytes:temp length:length - 1 encoding:kCFStringEncodingUTF8];
+        NSString *ssid = [[NSString alloc] initWithBytes:temp length:length - 1 encoding:NSUTF8StringEncoding];
         
         BlufiScanResponse *response = [[BlufiScanResponse alloc] init];
         response.type = 0x01;
@@ -793,14 +793,14 @@ enum {
 
 - (BOOL)postStaInfo:(BlufiConfigureParams *)params {
     Byte type = [self getTypeValueWithPackageType:PackageData subType:DataSubTypeStaSsid];
-    NSData *ssid = [params.staSsid dataUsingEncoding:kCFStringEncodingUTF8];
+    NSData *ssid = [params.staSsid dataUsingEncoding:NSUTF8StringEncoding];
     if (![self post:ssid encrypt:_encrypted checksum:_checksum requireAck:_requireAck type:type]) {
         return NO;
     }
     [NSThread sleepForTimeInterval:0.01];
     
     type = [self getTypeValueWithPackageType:PackageData subType:DataSubTypeStaPassword];
-    NSData *password = [params.staPassword dataUsingEncoding:kCFStringEncodingUTF8];
+    NSData *password = [params.staPassword dataUsingEncoding:NSUTF8StringEncoding];
     if (![self post:password encrypt:_encrypted checksum:_checksum requireAck:_requireAck type:type]) {
         return NO;
     }
@@ -811,7 +811,7 @@ enum {
 }
 
 - (BOOL)postSoftAPInfo:(BlufiConfigureParams *)params {
-    NSData *ssid = params.softApSsid ? [params.softApSsid dataUsingEncoding:kCFStringEncodingUTF8] : nil;
+    NSData *ssid = params.softApSsid ? [params.softApSsid dataUsingEncoding:NSUTF8StringEncoding] : nil;
     if (ssid && ssid.length > 0) {
         Byte type = [self getTypeValueWithPackageType:PackageData subType:DataSubTypeSoftAPSsid];
         if (![self post:ssid encrypt:_encrypted checksum:_checksum requireAck:_requireAck type:type]) {
@@ -820,7 +820,7 @@ enum {
         [NSThread sleepForTimeInterval:0.01];
     }
     
-    NSData *password = params.softApPassword ? [params.softApPassword dataUsingEncoding:kCFStringEncodingUTF8] : nil;
+    NSData *password = params.softApPassword ? [params.softApPassword dataUsingEncoding:NSUTF8StringEncoding] : nil;
     if (password && password.length > 0) {
         Byte type = [self getTypeValueWithPackageType:PackageData subType:DataSubTypeSoftAPPassword];
         if (![self post:password encrypt:_encrypted checksum:_checksum requireAck:_requireAck type:type]) {

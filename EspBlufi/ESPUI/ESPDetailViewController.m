@@ -414,7 +414,7 @@ typedef enum {
 }
 
 - (void)blufi:(BlufiClient *)client didReceiveCustomData:(NSData *)data status:(BlufiStatusCode)status {
-    NSString *customString = [[NSString alloc] initWithData:data encoding:kCFStringEncodingUTF8];
+    NSString *customString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     [self updateMessage:[NSString stringWithFormat:@"Receive device custom data: %@", customString]];
 }
 

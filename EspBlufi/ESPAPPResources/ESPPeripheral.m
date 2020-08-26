@@ -14,7 +14,6 @@
     self = [super init];
     if (self) {
         _peripheral = peripheral;
-        _name = peripheral.name;
         _uuid = peripheral.identifier;
     }
     return self;

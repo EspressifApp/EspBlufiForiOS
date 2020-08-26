@@ -60,8 +60,8 @@
  @param RSSI 信号强度
  */
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI {
-//    NSLog(@"扫描到设备: %@",peripheral.name);
     ESPPeripheral *espPeripheral = [[ESPPeripheral alloc] initWithPeripheral:peripheral];
+    espPeripheral.name = [advertisementData objectForKey:@"kCBAdvDataLocalName"];
     espPeripheral.rssi = RSSI.intValue;
     if (self.bleScanSuccessBlock) {
         self.bleScanSuccessBlock(espPeripheral);

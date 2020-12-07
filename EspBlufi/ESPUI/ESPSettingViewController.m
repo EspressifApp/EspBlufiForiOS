@@ -75,8 +75,8 @@
     for (int i = 0; i < titleArr.count - 1; i ++) {
         UILabel *version = [[UILabel alloc]initWithFrame:CGRectMake(15, 70 + (60 * i), SCREEN_WIDTH - 20, 20)];
         version.text = titleArr[i];
-//        [version addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deviceFilter)]];
-        version.userInteractionEnabled = YES;
+        [version addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deviceFilter)]];
+        version.userInteractionEnabled = NO;
         [contentView addSubview:version];
         
         UILabel *versionContent = [[UILabel alloc]initWithFrame:CGRectMake(15, 95 + (60 * i), SCREEN_WIDTH - 20, 20)];

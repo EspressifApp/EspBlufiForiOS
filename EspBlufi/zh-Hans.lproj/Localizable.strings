@@ -35,6 +35,7 @@
 "EspBlufi-configure-station-ssid" = "Wi-Fi SSID";
 "EspBlufi-configure-station-password" = "Wi-Fi 密码";
 "EspBlufi-configure-params-invalid" = "参数不完整";
+"EspBlufi-configure-softAp" = "SoftAP 密码不能为空";
 "ok"="确定";
 "cancel"="取消";
 "EspBlufi-location-title" = "定位服务已关闭";

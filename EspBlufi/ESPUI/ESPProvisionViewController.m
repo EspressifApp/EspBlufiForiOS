@@ -350,27 +350,17 @@ typedef enum {
         }
     } else if (self.displaymode == OpModeSta) {
         NSLog(@"%@,%@", self.WifiPasswordTextField.text, self.WifiSSidTextField.text);
-        if (self.WifiPasswordTextField.text.length > 0 && self.WifiSSidTextField.text.length > 0) {
-            params.opMode = OpModeSta;
-            params.staSsid = self.WifiSSidTextField.text;
-            params.staPassword = self.WifiPasswordTextField.text;
-            if (self.paramsDelegate) {
-                [self.paramsDelegate didSetParams:params];
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        } else {
-            [HUDTips ShowLabelTipsToView:self.view WithText:INTER_STR(@"EspBlufi-configure-params-invalid")];
+        params.opMode = OpModeSta;
+        params.staSsid = self.WifiSSidTextField.text;
+        params.staPassword = self.WifiPasswordTextField.text;
+        if (self.paramsDelegate) {
+            [self.paramsDelegate didSetParams:params];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     } else if (self.displaymode == OpModeSoftAP) {
-        if (self.softpasswordmode == Openmode) {
+        if (self.softpasswordmode != Openmode) {
             if (self.SoftAPSSidTextfield.text.length <= 0) {
-                [HUDTips ShowLabelTipsToView:self.view WithText:INTER_STR(@"EspBlufi-configure-params-invalid")];
-                return;
-            }
-            
-        } else {
-            if (self.SoftAPSSidTextfield.text.length <= 0 || self.SoftAPPasswordTextfield.text.length <= 0) {
-                [HUDTips ShowLabelTipsToView:self.view WithText:INTER_STR(@"EspBlufi-configure-params-invalid")];
+                [HUDTips ShowLabelTipsToView:self.view WithText:INTER_STR(@"EspBlufi-configure-softAp")];
                 return;
             }
         }
@@ -398,18 +388,12 @@ typedef enum {
             [self.navigationController popViewControllerAnimated:YES];
         }
     } else if (self.displaymode == OpModeStaSoftAP) {
-        if (self.softpasswordmode == Openmode) {
-            if (self.SoftAPSSidTextfield.text.length <= 0 ||self.WifiPasswordTextField.text.length <= 0 || self.WifiSSidTextField.text.length <= 0) {
-                [HUDTips ShowLabelTipsToView:self.view WithText:INTER_STR(@"EspBlufi-configure-params-invalid")];
-                return;
-            }
-        } else {
-            if (self.SoftAPSSidTextfield.text.length <= 0 || self.SoftAPPasswordTextfield.text.length <= 0 ||self.WifiPasswordTextField.text.length <= 0 || self.WifiSSidTextField.text.length <= 0) {
-                [HUDTips ShowLabelTipsToView:self.view WithText:INTER_STR(@"EspBlufi-configure-params-invalid")];
+        if (self.softpasswordmode != Openmode) {
+            if (self.SoftAPPasswordTextfield.text.length <= 0) {
+                [HUDTips ShowLabelTipsToView:self.view WithText:INTER_STR(@"EspBlufi-configure-softAp")];
                 return;
             }
         }
-        
         params.opMode = OpModeStaSoftAP;
         params.softApSsid = self.SoftAPSSidTextfield.text;
         params.softApPassword = self.SoftAPPasswordTextfield.text;
@@ -707,6 +691,9 @@ typedef enum {
             break;
     }
     return result;
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 /*
 #pragma mark - Navigation

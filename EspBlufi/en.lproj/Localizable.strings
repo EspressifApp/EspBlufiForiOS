@@ -35,6 +35,7 @@
 "EspBlufi-configure-station-ssid" = "Wi-Fi SSID";
 "EspBlufi-configure-station-password" = "Wi-Fi Password";
 "EspBlufi-configure-params-invalid" = "Params Invalid";
+"EspBlufi-configure-softAp" = "SoftAP password cannot be empty";
 "ok"="OK";
 "cancel"="cancel";
 "EspBlufi-location-title" = "Location service is down";

@@ -124,6 +124,8 @@
         //选择器
         self.pickerV = [[UIPickerView alloc]init];
         self.pickerV.backgroundColor = UICOLOR_RGBA(248, 248, 248, 1);
+        self.pickerV.delegate = self;
+        self.pickerV.dataSource = self;
         [self.bgV addSubview:self.pickerV];
         [self.pickerV mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -133,11 +135,6 @@
             make.right.mas_equalTo(0);
             
         }];
-        self.pickerV.delegate = self;
-        self.pickerV.dataSource = self;
-        
-        
-        
     }
     return self;
 }
@@ -528,8 +525,12 @@
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
     
-    ((UIView *)[pickerView.subviews objectAtIndex:1]).backgroundColor = [UIColor lightGrayColor];
-    ((UIView *)[pickerView.subviews objectAtIndex:2]).backgroundColor = [UIColor lightGrayColor];
+    if (@available(iOS 14.0, *)) {
+        ((UIView *)[pickerView.subviews objectAtIndex:0]).backgroundColor = [UIColor clearColor];
+    } else {
+        ((UIView *)[pickerView.subviews objectAtIndex:1]).backgroundColor = [UIColor lightGrayColor];
+        ((UIView *)[pickerView.subviews objectAtIndex:2]).backgroundColor = [UIColor lightGrayColor];
+    }
     
     UILabel *label = [[UILabel alloc] init];
     label.textAlignment = NSTextAlignmentCenter;

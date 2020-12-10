@@ -1,62 +1,62 @@
 {
   "images" : [
     {
-      "size" : "20x20",
+      "filename" : "40画板 1.png",
       "idiom" : "iphone",
-      "filename" : "ic_launcher 2-1.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "20x20"
     },
     {
-      "size" : "20x20",
+      "filename" : "60画板 1.png",
       "idiom" : "iphone",
-      "filename" : "ic_launcher 3.png",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "20x20"
     },
     {
-      "size" : "29x29",
+      "filename" : "58画板 1.png",
       "idiom" : "iphone",
-      "filename" : "ic_launcher 3-1.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "29x29"
     },
     {
-      "size" : "29x29",
+      "filename" : "87画板 1.png",
       "idiom" : "iphone",
-      "filename" : "ic_launcher 4.png",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "29x29"
     },
     {
-      "size" : "40x40",
+      "filename" : "80画板 1.png",
       "idiom" : "iphone",
-      "filename" : "ic_launcher 4-1.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "40x40"
     },
     {
-      "size" : "40x40",
+      "filename" : "120画板 1.png",
       "idiom" : "iphone",
-      "filename" : "ic_launcher 5.png",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "40x40"
     },
     {
-      "size" : "60x60",
+      "filename" : "120画板 1-1.png",
       "idiom" : "iphone",
-      "filename" : "ic_launcher 2.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "60x60"
     },
     {
-      "size" : "60x60",
+      "filename" : "180画板 1.png",
       "idiom" : "iphone",
-      "filename" : "ic_launcher 2-2.png",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "60x60"
     },
     {
-      "size" : "1024x1024",
+      "filename" : "1024-0画板 1.png",
       "idiom" : "ios-marketing",
-      "filename" : "1024*1024.jpg",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "1024x1024"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

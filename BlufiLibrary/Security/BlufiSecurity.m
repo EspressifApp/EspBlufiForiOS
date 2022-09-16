@@ -108,14 +108,18 @@ const BN_ULONG DH_G = 2;
     int ret = 0, i;
     dh = DH_new();
     
-    dh->p = BN_bin2bn(DH_P, sizeof(DH_P), NULL);
-    dh->g = BN_new();
-    BN_set_word(dh->g, DH_G);
+    BIGNUM *dh_p = BN_bin2bn(DH_P, sizeof(DH_P), NULL);
+    BIGNUM *dh_g = BN_new();
+    BN_set_word(dh_g, DH_G);
+    
+    DH_set0_pqg(dh, dh_p, NULL, dh_g);
     
     while(!ret) {
         ret = DH_generate_key(dh);
     }
-    ret = DH_check_pub_key(dh, dh->pub_key, &i);
+    const BIGNUM *dh_pub_key = DH_get0_pub_key(dh);
+    const BIGNUM *dh_priv_key = DH_get0_priv_key(dh);
+    ret = DH_check_pub_key(dh, dh_pub_key, &i);
     if(ret != 1) {
         NSLog(@"BlufiSecurity Generate DH public key failed");
         return nil;
@@ -123,9 +127,9 @@ const BN_ULONG DH_G = 2;
     
     const int keySize = DH_size(dh);
     unsigned char *keyBuf = malloc(keySize);
-    BN_bn2bin(dh->pub_key, keyBuf);
+    BN_bn2bin(dh_pub_key, keyBuf);
     NSData *publicKey = [NSData dataWithBytes:keyBuf length:keySize];
-    BN_bn2bin(dh->priv_key, keyBuf);
+    BN_bn2bin(dh_priv_key, keyBuf);
     NSData *privateKey = [NSData dataWithBytes:keyBuf length:keySize];
     free(keyBuf);
     

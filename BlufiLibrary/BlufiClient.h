@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define BLUFI_VERSION @"2.1.0"
+#define BLUFI_VERSION @"2.2.0"
 
 @protocol BlufiDelegate;
 

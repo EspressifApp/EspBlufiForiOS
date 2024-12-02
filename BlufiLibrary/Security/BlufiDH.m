@@ -34,7 +34,26 @@
         ret = DH_compute_key(shareKey, pubKey, _dh);
     }
     BN_free(pubKey);
-    return [NSData dataWithBytes:shareKey length:128];
+    
+    int offset = 0;
+    for (int i = 0; i < 128; i++) {
+        if (shareKey[i] == 0) {
+            offset++;
+        } else {
+            break;
+        }
+    }
+    
+    if (offset == 0) {
+        return [NSData dataWithBytes:shareKey length:128];
+    } else {
+        int secretLength = 128 - offset;
+        Byte secretKey[secretLength];
+        for (int i = 0; i < secretLength; i++) {
+            secretKey[i] = shareKey[i + offset];
+        }
+        return [NSData dataWithBytes:secretKey length:secretLength];
+    }
 }
 
 - (void)releaseDH {

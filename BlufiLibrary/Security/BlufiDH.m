@@ -27,7 +27,13 @@
         NSLog(@"BlufiDH: DH is nil");
         return nil;
     }
-    Byte shareKey[128];
+    const int keySize = DH_size(_dh);
+    Byte *shareKey = malloc(keySize);
+    if (!shareKey) {
+        NSLog(@"BlufiDH: Failed to allocate memory for shareKey");
+        return nil;
+    }
+    
     BIGNUM *pubKey = BN_bin2bn(srcPublicKey.bytes, (int)srcPublicKey.length, NULL);
     int ret = 0;
     while (!ret) {
@@ -36,7 +42,7 @@
     BN_free(pubKey);
     
     int offset = 0;
-    for (int i = 0; i < 128; i++) {
+    for (int i = 0; i < keySize; i++) {
         if (shareKey[i] == 0) {
             offset++;
         } else {
@@ -44,16 +50,25 @@
         }
     }
     
+    NSData *result;
     if (offset == 0) {
-        return [NSData dataWithBytes:shareKey length:128];
+        result = [NSData dataWithBytes:shareKey length:keySize];
     } else {
-        int secretLength = 128 - offset;
-        Byte secretKey[secretLength];
+        int secretLength = keySize - offset;
+        Byte *secretKey = malloc(secretLength);
+        if (!secretKey) {
+            free(shareKey);
+            NSLog(@"BlufiDH: Failed to allocate memory for secretKey");
+            return nil;
+        }
         for (int i = 0; i < secretLength; i++) {
             secretKey[i] = shareKey[i + offset];
         }
-        return [NSData dataWithBytes:secretKey length:secretLength];
+        result = [NSData dataWithBytes:secretKey length:secretLength];
+        free(secretKey);
     }
+    free(shareKey);
+    return result;
 }
 
 - (void)releaseDH {

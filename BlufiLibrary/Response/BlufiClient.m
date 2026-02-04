@@ -86,6 +86,8 @@ enum {
 
 @property(assign, nonatomic)BOOL closed;
 
+@property(assign, nonatomic)NSInteger deviceVersion;
+
 @end
 
 @implementation BlufiClient
@@ -98,6 +100,7 @@ enum {
         _writeCondition = [[NSCondition alloc] init];
         _notifyUUID = [CBUUID UUIDWithString:UUID_NOTIFY_CHAR];
         _callbackQueue = [NSOperationQueue mainQueue];
+        _deviceVersion = -1;
         _requestQueue = [[NSOperationQueue alloc] init];
         _requestQueue.maxConcurrentOperationCount = 1;
         
@@ -539,6 +542,8 @@ enum {
         response = [[BlufiVersionResponse alloc] init];
         response.bigVer = buf[0];
         response.smallVer = buf[1];
+        // Store device version: (bigVer << 8) | smallVer
+        _deviceVersion = (buf[0] << 8) | buf[1];
     }
     
     [self onVersionResponse:response status:code];
@@ -913,9 +918,19 @@ enum {
     }];
 }
 
+- (int)getSecurityVersion {
+    if (_deviceVersion < 0x0104) {
+        return 1; // SECURITY_V1
+    } else {
+        return 2; // SECURITY_V2
+    }
+}
+
 - (BlufiDH *)postNegotiateSecurity {
     Byte type = [self getTypeValueWithPackageType:PackageData subType:DataSubTypeNeg];
-    BlufiDH *blufiDH = [BlufiSecurity dhGenerateKeys];
+    int securityVersion = [self getSecurityVersion];
+    int dhLength = (securityVersion == 2) ? 3072 : 1024;
+    BlufiDH *blufiDH = [BlufiSecurity dhGenerateKeysWithLength:dhLength];
     NSData *p = blufiDH.p;
     NSData *g = blufiDH.g;
     NSData *k = blufiDH.publicKey;
@@ -1006,7 +1021,12 @@ enum {
             }
             
             NSData *secretKey = [blufiDH generateSecret:deviceKey];
-            self.aesKey = [BlufiSecurity md5:secretKey];
+            int securityVersion = [self getSecurityVersion];
+            if (securityVersion == 2) {
+                self.aesKey = [BlufiSecurity sha256:secretKey];
+            } else {
+                self.aesKey = [BlufiSecurity md5:secretKey];
+            }
             if (DBUG) {
                 NSLog(@"DH Secret = %@", secretKey);
                 NSLog(@"AES Key   = %@", self.aesKey);

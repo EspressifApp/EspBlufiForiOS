@@ -88,6 +88,8 @@ enum {
 
 @property(assign, nonatomic)NSInteger deviceVersion;
 
+@property(copy, nonatomic)void (^preparedRunnable)(void);
+
 @end
 
 @implementation BlufiClient
@@ -521,6 +523,12 @@ enum {
 }
 
 - (void)onVersionResponse:(BlufiVersionResponse *)response status:(BlufiStatusCode)code {
+    // Execute prepared runnable if exists (called after version response, success or failure)
+    if (_preparedRunnable) {
+        _preparedRunnable();
+        _preparedRunnable = nil;
+    }
+    
     id delegate = _blufiDelegate;
     BlufiClient *client = self;
     if (delegate && [delegate respondsToSelector:@selector(blufi:didReceiveDeviceVersionResponse:status:)]) {
@@ -1224,8 +1232,14 @@ enum {
         [self gattDiscoverCallback];
         [self clearConnection];
     } else {
-            // Connection all ready
-        [self gattDiscoverCallback];
+        // Connection all ready, but wait for version before calling gattPrepared
+        // Store the callback to be executed after version is received
+        __weak typeof(self) weakSelf = self;
+        _preparedRunnable = ^{
+            [weakSelf gattDiscoverCallback];
+        };
+        // Request device version first
+        [self requestDeviceVersion];
     }
     
     // callback

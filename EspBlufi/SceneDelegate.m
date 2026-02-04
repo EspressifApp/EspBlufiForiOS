@@ -13,6 +13,33 @@
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
     UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:[ViewController new]];
+    
+    // Ensure navigation bar is always visible and not hidden
+    [navigationController setNavigationBarHidden:NO animated:NO];
+    
+    // Set navigation bar color to theme color
+    navigationController.navigationBar.barTintColor = navColor;
+    
+    // For iOS 13+, also configure appearance for proper color display
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        [appearance configureWithOpaqueBackground];
+        appearance.backgroundColor = navColor;
+        appearance.titleTextAttributes = @{
+            NSForegroundColorAttributeName: [UIColor whiteColor],
+            NSFontAttributeName: [UIFont boldSystemFontOfSize:20]
+        };
+        navigationController.navigationBar.standardAppearance = appearance;
+        navigationController.navigationBar.scrollEdgeAppearance = appearance;
+    }
+    
+    // Disable large title mode to prevent navigation bar from auto-hiding
+    if (@available(iOS 11.0, *)) {
+        navigationController.navigationBar.prefersLargeTitles = NO;
+        // Make navigation bar opaque (not translucent) so content doesn't show through
+        navigationController.navigationBar.translucent = NO;
+    }
+    
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
 }

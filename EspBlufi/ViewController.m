@@ -31,6 +31,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    // Ensure navigation bar is always visible and not hidden
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
+    // Disable large title mode to prevent navigation bar from auto-hiding on scroll
+    if (@available(iOS 11.0, *)) {
+        self.navigationController.navigationBar.prefersLargeTitles = NO;
+        // Ensure navigation bar is always opaque (not transparent)
+        self.navigationController.navigationBar.translucent = NO;
+    } else {
+        // For iOS 10 and earlier, prevent view from extending under navigation bar
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.navigationController.navigationBar.translucent = NO;
+    }
+    
     self.espFBYBleHelper = [ESPFBYBLEHelper share];
     self.navigationItem.title = INTER_STR(@"EspBlufi-nav-title");
 //    UIButton *menuBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
@@ -45,6 +60,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    // Ensure navigation bar is always visible
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    
+    // Disable large title mode to prevent navigation bar from hiding
+    if (@available(iOS 11.0, *)) {
+        self.navigationController.navigationBar.prefersLargeTitles = NO;
+    }
+    
     self.filterContent = [ESPDataConversion loadBlufiScanFilter];
     [self scanDeviceInfo];
 }
@@ -77,10 +101,26 @@
 }
 
 - (void)setupBasedView {
-    self.peripheralView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    // Calculate frame to account for navigation bar
+    CGRect tableViewFrame = self.view.bounds;
+    
+    // Use view.bounds to automatically respect safe area and navigation bar
+    self.peripheralView = [[UITableView alloc]initWithFrame:tableViewFrame];
     self.peripheralView.delegate = self;
     self.peripheralView.dataSource = self;
     self.peripheralView.showsVerticalScrollIndicator = NO;
+    
+    // Enable automatic content inset adjustment for safe area and navigation bar
+    // This ensures content starts below the navigation bar
+    if (@available(iOS 11.0, *)) {
+        self.peripheralView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = YES;
+    }
+    
+    // Make table view autoresize with view
+    self.peripheralView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
     [self.view addSubview:self.peripheralView];
     self.peripheralView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(MJRefresh_header)];
 }

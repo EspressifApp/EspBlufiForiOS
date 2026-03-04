@@ -11,6 +11,7 @@
 #import "BlufiFrameCtrlData.h"
 #import "BlufiSecurity.h"
 #import "BlufiConfigureParams.h"
+#import <CommonCrypto/CommonCrypto.h>
 
 #define PACKAGE_LENGTH_DEFAULT   128
 #define PACKAGE_LENGTH_MIN       20
@@ -89,6 +90,10 @@ enum {
 @property(assign, nonatomic)NSInteger deviceVersion;
 
 @property(copy, nonatomic)void (^preparedRunnable)(void);
+
+/// SECURITY_V2: persistent AES-CTR cryptors (caller must CCCryptorRelease on clear)
+@property(assign, nonatomic) CCCryptorRef encryptCryptorV2;
+@property(assign, nonatomic) CCCryptorRef decryptCryptorV2;
 
 @end
 
@@ -212,6 +217,18 @@ enum {
     _writeChar = nil;
     _notifyChar = nil;
     [_deviceAck cancel];
+    
+    _encrypted = NO;
+    _checksum = NO;
+    _aesKey = nil;
+    if (_encryptCryptorV2) {
+        CCCryptorRelease(_encryptCryptorV2);
+        _encryptCryptorV2 = NULL;
+    }
+    if (_decryptCryptorV2) {
+        CCCryptorRelease(_decryptCryptorV2);
+        _decryptCryptorV2 = NULL;
+    }
 }
 
 - (Byte)getTypeValueWithPackageType:(PackageType)pkgType subType:(SubType)subType {
@@ -367,8 +384,12 @@ enum {
     }
     
     if (encrypt && data && data.length > 0) {
-        NSData *iv = [self generateAESIV:sequence];
-        data = [BlufiSecurity aesEncrypt:data key:_aesKey iv:iv];
+        if ([self getSecurityVersion] == 2 && _encryptCryptorV2) {
+            data = [BlufiSecurity aesCTRUpdateWithCryptor:_encryptCryptorV2 data:data];
+        } else {
+            NSData *iv = [self generateAESIV:sequence];
+            data = [BlufiSecurity aesEncrypt:data key:_aesKey iv:iv];
+        }
     }
     if (data && data.length > 0) {
         [result appendData:data];
@@ -424,9 +445,15 @@ enum {
     NSData *data = [NSData dataWithBytes:dataBuf length:dataLen];
     
     if (frameCtrlData.isEncrypted) {
-        NSData *iv =[self generateAESIV:sequence];
-        data = [BlufiSecurity aesDecrypt:data key:_aesKey iv:iv];
-        memcpy(dataBuf, data.bytes, data.length);
+        if ([self getSecurityVersion] == 2 && _decryptCryptorV2) {
+            data = [BlufiSecurity aesCTRUpdateWithCryptor:_decryptCryptorV2 data:data];
+        } else {
+            NSData *iv = [self generateAESIV:sequence];
+            data = [BlufiSecurity aesDecrypt:data key:_aesKey iv:iv];
+        }
+        if (data && data.length <= dataLen) {
+            memcpy(dataBuf, data.bytes, data.length);
+        }
     }
     
     if (frameCtrlData.isChecksum) {
@@ -1029,9 +1056,34 @@ enum {
             }
             
             NSData *secretKey = [blufiDH generateSecret:deviceKey];
+            if (!secretKey || secretKey.length == 0) {
+                NSLog(@"negotiateSecurity nil or empty secretKey");
+                code = StatusFailed;
+                return;
+            }
             int securityVersion = [self getSecurityVersion];
             if (securityVersion == 2) {
                 self.aesKey = [BlufiSecurity sha256:secretKey];
+                // SECURITY_V2: AES/CTR with domain-derived IVs (encryptor IV = blufi_dec, decryptor IV = blufi_enc)
+                if (_encryptCryptorV2) {
+                    CCCryptorRelease(_encryptCryptorV2);
+                    _encryptCryptorV2 = NULL;
+                }
+                if (_decryptCryptorV2) {
+                    CCCryptorRelease(_decryptCryptorV2);
+                    _decryptCryptorV2 = NULL;
+                }
+                NSData *encIV = [BlufiSecurity generateAESIV2WithDomain:@"blufi_dec" key:secretKey];
+                NSData *decIV = [BlufiSecurity generateAESIV2WithDomain:@"blufi_enc" key:secretKey];
+                if (encIV && decIV && self.aesKey) {
+                    _encryptCryptorV2 = [BlufiSecurity createAESCTRCryptorWithKey:self.aesKey iv:encIV encrypt:YES];
+                    _decryptCryptorV2 = [BlufiSecurity createAESCTRCryptorWithKey:self.aesKey iv:decIV encrypt:NO];
+                }
+                if (!_encryptCryptorV2 || !_decryptCryptorV2) {
+                    NSLog(@"negotiateSecurity failed to create V2 cryptors");
+                    code = StatusFailed;
+                    return;
+                }
             } else {
                 self.aesKey = [BlufiSecurity md5:secretKey];
             }

@@ -135,10 +135,46 @@ const unsigned long DH_G = 2;
     CCCryptorRef cryptor = NULL;
     CCCryptorStatus status = CCCryptorCreateWithMode(kCCDecrypt, kCCModeCFB, kCCAlgorithmAES, ccNoPadding, iv.bytes, key.bytes, key.length, NULL, 0, 0, 0, &cryptor);
     if (status != kCCSuccess) {
-        NSLog(@"BlufiSecurity aesEncrypt error: %@", @(status));
+        NSLog(@"BlufiSecurity aesDecrypt error: %@", @(status));
         return nil;
     }
     return [self aecCrypt:data cryptor:cryptor];
+}
+
++ (NSData *)generateAESIV2WithDomain:(NSString *)domain key:(NSData *)key {
+    NSMutableData *input = [NSMutableData data];
+    [input appendData:[domain dataUsingEncoding:NSUTF8StringEncoding]];
+    [input appendData:key];
+    NSData *hash = [self sha256:input];
+    if (hash.length < 16) return nil;
+    return [hash subdataWithRange:NSMakeRange(0, 16)];
+}
+
++ (CCCryptorRef)createAESCTRCryptorWithKey:(NSData *)key iv:(NSData *)iv encrypt:(BOOL)encrypt {
+    CCCryptorRef cryptor = NULL;
+    CCOperation op = encrypt ? kCCEncrypt : kCCDecrypt;
+    CCCryptorStatus status = CCCryptorCreateWithMode(op, kCCModeCTR, kCCAlgorithmAES, ccNoPadding, iv.bytes, key.bytes, key.length, NULL, 0, 0, 0, &cryptor);
+    if (status != kCCSuccess) {
+        NSLog(@"BlufiSecurity createAESCTRCryptor error: %@", @(status));
+        return NULL;
+    }
+    return cryptor;
+}
+
++ (NSData *)aesCTRUpdateWithCryptor:(CCCryptorRef)cryptor data:(NSData *)data {
+    if (!cryptor || !data || data.length == 0) return nil;
+    size_t outLength = 0;
+    size_t bufSize = data.length + kCCBlockSizeAES128;
+    char *outBuf = malloc(bufSize);
+    if (!outBuf) return nil;
+    CCCryptorStatus status = CCCryptorUpdate(cryptor, data.bytes, data.length, outBuf, bufSize, &outLength);
+    if (status != kCCSuccess) {
+        free(outBuf);
+        return nil;
+    }
+    NSData *result = [NSData dataWithBytes:outBuf length:outLength];
+    free(outBuf);
+    return result;
 }
 
 + (BlufiDH *)dhGenerateKeys {

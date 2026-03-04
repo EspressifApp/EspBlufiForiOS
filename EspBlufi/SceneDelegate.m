@@ -33,13 +33,6 @@
         navigationController.navigationBar.scrollEdgeAppearance = appearance;
     }
     
-    // Disable large title mode to prevent navigation bar from auto-hiding
-    if (@available(iOS 11.0, *)) {
-        navigationController.navigationBar.prefersLargeTitles = NO;
-        // Make navigation bar opaque (not translucent) so content doesn't show through
-        navigationController.navigationBar.translucent = NO;
-    }
-    
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
 }

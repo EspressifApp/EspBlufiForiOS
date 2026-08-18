@@ -12,8 +12,8 @@ This is a demo app to control the ESP device which run [BluFi](https://github.co
 
 ## Configure Project
 
-Configure openssl
-
 * Drag the BlufiLibrary file into the project root directory.
-* Add **$(inherited)** and **$(PROJECT_DIR)/(project name)/BlufiLibrary/Security/openssl** to **Library Search Paths**.
-* Add **$(SRCROOT)/(project name)/BlufiLibrary/Security/openssl/include/** to **Header Search Paths**
+
+No third-party crypto library is required. The Diffie-Hellman big-integer
+operations are implemented locally (see `BlufiLibrary/Security/BlufiDHEngine.c`),
+and all symmetric crypto (MD5 / SHA256 / AES) uses Apple's CommonCrypto.

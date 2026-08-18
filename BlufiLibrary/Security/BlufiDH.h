@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ESPHeaderFiles.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,9 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(strong, nonatomic, readonly)NSData *g;
 @property(strong, nonatomic, readonly)NSData *publicKey;
 @property(strong, nonatomic, readonly)NSData *privateKey;
-@property(assign, nonatomic, readonly)DH *dh;
 
-- (instancetype)initWithP:(NSData *)p G:(NSData *)g PublicKey:(NSData *)publicKey PrivateKey:(NSData *)privateKey DH:(DH *)dh;
+- (instancetype)initWithP:(NSData *)p G:(NSData *)g PublicKey:(NSData *)publicKey PrivateKey:(NSData *)privateKey;
 
 - (NSData *)generateSecret:(NSData *)privateKey;
 
